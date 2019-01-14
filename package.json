@@ -1,0 +1,37 @@
+{
+  "name": "tymbre",
+  "version": "1.0.0",
+  "description": "## Concept  Tymbre is an app that allows users to access data analytics from multiple music libraries such as Soundcloud and Spotify to better understand specific musical artists' performance in regards to popularity. Primary factors taken into account are number of streams, royalties, fans, hours played, and number of countries played in. Tymbre also includes its own composite score based on these primary factors that it will use to tier artists into high, mid, and low levels.",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salilbhise/Tymbre.git"
+  },
+  "keywords": [],
+  "author": "aale12 salilbhise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salilbhise/Tymbre/issues"
+  },
+  "homepage": "https://github.com/salilbhise/Tymbre#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.4.4",
+    "react-router-dom": "^4.3.1"
+  }
+}
