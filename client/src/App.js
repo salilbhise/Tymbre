@@ -1,21 +1,33 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+/**
+* Main App
+*/
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+// css
+import './lib/reactifyCss';
 
-export default App;
+// firebase
+import './firebase';
+
+// app component
+import App from './container/App';
+
+import { configureStore } from './store';
+
+const MainApp = () => (
+	<Provider store={configureStore()}>
+		<MuiPickersUtilsProvider utils={MomentUtils}>
+			<Router>
+				<Switch>
+					<Route path="/" component={App} />
+				</Switch>
+			</Router>
+		</MuiPickersUtilsProvider>
+	</Provider>
+);
+
+export default MainApp;
