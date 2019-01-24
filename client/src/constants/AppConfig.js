@@ -3,9 +3,9 @@
  */
 const AppConfig = {
     appLogo: require('Assets/img/site-logo.png'),          // App Logo
-    brandName: 'Reactify',                                    // Brand Name
+    brandName: 'Tymbre',                                    // Brand Name
     navCollapsed: false,                                      // Sidebar collapse
-    darkMode: false,                                          // Dark Mode
+    darkMode: true,                                          // Dark Mode
     boxLayout: false,                                         // Box Layout
     rtlLayout: false,                                         // RTL Layout
     miniSidebar: false,                                       // Mini Sidebar
