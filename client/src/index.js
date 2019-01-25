@@ -1,33 +1,23 @@
-/**
- * Reactify - A Material Design Admin Template
- * Copyright 2018 All Rights Reserved
- * Made Wih Love
- * Created By The Iron Network, LLC
- */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-// Save a reference to the root element for reuse
-const rootEl = document.getElementById("root");
+import { HashRouter, Route, Switch } from "react-router-dom";
 
-// Create a reusable render method that we can call more than once
-let render = () => {
-  // Dynamically import our main App component, and render it
-  const MainApp = require('./App').default;
-  ReactDOM.render(
-    <MainApp />,
-    rootEl
-  );
-};
+import indexRoutes from "routes/index.jsx";
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
-    render(
-      <NextApp />,
-      rootEl
-    );
-  });
-}
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/animate.min.css";
+import "./assets/sass/light-bootstrap-dashboard.css?v=1.2.0";
+import "./assets/css/demo.css";
+import "./assets/css/pe-icon-7-stroke.css";
 
-render();
+ReactDOM.render(
+  <HashRouter>
+    <Switch>
+      {indexRoutes.map((prop, key) => {
+        return <Route to={prop.path} component={prop.component} key={key} />;
+      })}
+    </Switch>
+  </HashRouter>,
+  document.getElementById("root")
+);
