@@ -1,12 +1,5 @@
 const express = require("express");
-<<<<<<< HEAD
 const mongoose = require("mongoose");
-=======
-
-var serviceAccount = require('./tymbredb.json');
-
-
->>>>>>> master
 const app = express();
 const PORT = process.env.PORT || 3001;
 
