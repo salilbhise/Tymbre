@@ -1,8 +1,5 @@
 const express = require("express");
-
-var serviceAccount = require('./tymbredb.json');
-
-
+const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -18,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 
 
 // Connect to the Mongo DB
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/tymbre");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/tymbre");
 
 
 // Start the API server
