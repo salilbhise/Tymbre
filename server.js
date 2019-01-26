@@ -1,13 +1,4 @@
 const express = require("express");
-const admin = require('firebase-admin');
-
-var serviceAccount = require('./tymbredb.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-//var db = admin.firestore();
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 
 // Connect to the Mongo DB
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/tymbre");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/tymbre");
 
 // Start the API server
 app.listen(PORT, function () {

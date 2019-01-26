@@ -3,7 +3,7 @@ import { Navbar } from "react-bootstrap";
 
 import HeaderLinks from "./HeaderLinks.jsx";
 
-import dashboardRoutes from "routes/dashboard.jsx";
+import dashboardRoutes from "../../routes/dashboard.jsx";
 
 class Header extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Header extends Component {
     document.documentElement.classList.toggle("nav-open");
     var node = document.createElement("div");
     node.id = "bodyClick";
-    node.onclick = function() {
+    node.onclick = function () {
       this.parentElement.removeChild(this);
       document.documentElement.classList.toggle("nav-open");
     };

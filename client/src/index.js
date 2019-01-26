@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import { HashRouter, Route, Switch } from "react-router-dom";
 
-import indexRoutes from "routes/index.jsx";
+import indexRoutes from "./routes/index.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/animate.min.css";
