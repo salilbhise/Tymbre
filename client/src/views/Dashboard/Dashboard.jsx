@@ -16,8 +16,17 @@ import {
   responsiveBar,
   legendBar
 } from "../../variables/Variables.jsx";
+import API from "../../utils/API.js";
 
 class Dashboard extends Component {
+  state = {
+    artist: "Testing"
+  }
+  componentDidMount() {
+    API.getArtists().then(data => {
+      console.log(data);
+    })
+  }
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {

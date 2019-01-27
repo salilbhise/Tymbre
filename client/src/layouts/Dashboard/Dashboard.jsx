@@ -16,7 +16,8 @@ class Dashboard extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleNotificationClick = this.handleNotificationClick.bind(this);
     this.state = {
-      _notificationSystem: null
+      _notificationSystem: null,
+      artists: []
     };
   }
   handleNotificationClick(position) {
