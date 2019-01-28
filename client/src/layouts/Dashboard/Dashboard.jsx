@@ -21,8 +21,8 @@ class Dashboard extends Component {
     };
   }
   handleNotificationClick(position) {
-    var color = Math.floor(Math.random() * 4 + 1);
-    var level;
+    const color = Math.floor(Math.random() * 4 + 1);
+    let level;
     switch (color) {
       case 1:
         level = "success";

@@ -16,5 +16,8 @@ export default {
   // Saves a artist to the database
   saveArtist: function (artistData) {
     return axios.post("/api/artists", artistData);
+  },
+  spotifySearch: function(artist) {
+    return axios.get("/api/spotify/" + artist);
   }
 };
