@@ -3,10 +3,10 @@
 // // // For notifications
 // //
 //
-var defaultWidth =
+const defaultWidth =
   window.screen.width > 768 ? window.screen.width * 1 / 3 : window.screen.width;
 
-var style = {
+const style = {
   Wrapper: {},
   Containers: {
     DefaultStyle: {
@@ -473,17 +473,17 @@ const iconsArray = [
 // //
 //
 // Data for Pie Chart
-var dataPie = {
+const dataPie = {
   labels: ["40%", "20%", "40%"],
   series: [40, 20, 40]
 };
-var legendPie = {
+const legendPie = {
   names: ["Open", "Bounce", "Unsubscribe"],
   types: ["info", "danger", "warning"]
 };
 
 // Data for Line Chart
-var dataSales = {
+const dataSales = {
   labels: [
     "9:00AM",
     "12:00AM",
@@ -500,7 +500,7 @@ var dataSales = {
     [23, 113, 67, 108, 190, 239, 307, 308]
   ]
 };
-var optionsSales = {
+const optionsSales = {
   low: 0,
   high: 800,
   showArea: false,
@@ -516,25 +516,25 @@ var optionsSales = {
     right: 50
   }
 };
-var responsiveSales = [
+const responsiveSales = [
   [
     "screen and (max-width: 640px)",
     {
       axisX: {
-        labelInterpolationFnc: function(value) {
+        labelInterpolationFnc: function (value) {
           return value[0];
         }
       }
     }
   ]
 ];
-var legendSales = {
+const legendSales = {
   names: ["Open", "Click", "Click Second Time"],
   types: ["info", "danger", "warning"]
 };
 
 // Data for Bar Chart
-var dataBar = {
+const dataBar = {
   labels: [
     "Jan",
     "Feb",
@@ -554,27 +554,27 @@ var dataBar = {
     [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
   ]
 };
-var optionsBar = {
+const optionsBar = {
   seriesBarDistance: 10,
   axisX: {
     showGrid: false
   },
   height: "245px"
 };
-var responsiveBar = [
+const responsiveBar = [
   [
     "screen and (max-width: 640px)",
     {
       seriesBarDistance: 5,
       axisX: {
-        labelInterpolationFnc: function(value) {
+        labelInterpolationFnc: function (value) {
           return value[0];
         }
       }
     }
   ]
 ];
-var legendBar = {
+const legendBar = {
   names: ["Tesla Model S", "BMW 5 Series"],
   types: ["info", "danger"]
 };

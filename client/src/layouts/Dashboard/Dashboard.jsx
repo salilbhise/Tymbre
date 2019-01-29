@@ -16,12 +16,13 @@ class Dashboard extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleNotificationClick = this.handleNotificationClick.bind(this);
     this.state = {
-      _notificationSystem: null
+      _notificationSystem: null,
+      artists: []
     };
   }
   handleNotificationClick(position) {
-    var color = Math.floor(Math.random() * 4 + 1);
-    var level;
+    const color = Math.floor(Math.random() * 4 + 1);
+    let level;
     switch (color) {
       case 1:
         level = "success";

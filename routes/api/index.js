@@ -1,4 +1,11 @@
-const testRoutes = require("./test");
+const router = require("express").Router();
+const artistRoutes = require("./artist");
+const userRoutes = require("./user");
+const spotifyRoutes = require("./spotify")
 
-module.exports = testRoutes;
+// Book routes
+router.use("/artists", artistRoutes);
+router.use("/users", userRoutes);
+router.use("/spotify", spotifyRoutes);
 
+module.exports = router;

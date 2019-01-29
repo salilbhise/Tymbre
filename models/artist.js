@@ -5,7 +5,10 @@ const artistSchema = new Schema({
   name: { type: String, required: true },
   genre: { type: String, required: true },
   about: { type: String },
-  spotifyView: { type: Date, default: Date.now }
+  spotifyView: { type: Number, },
+  lastFmListeners: { type: Number, },
+  totalViewsAndListeners: { type: Number, },
+  imageLink: { type: String, },
 });
 
 const Artist = mongoose.model("Artist", artistSchema);

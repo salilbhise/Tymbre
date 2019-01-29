@@ -16,12 +16,24 @@ import {
   responsiveBar,
   legendBar
 } from "../../variables/Variables.jsx";
+import API from "../../utils/API.js";
 
 class Dashboard extends Component {
+  state = {
+    artist: "Testing"
+  }
+  componentDidMount() {
+    // API.getArtists().then(data => {
+    //   console.log(data);
+    // })
+    API.spotifySearch("Michael Jackson").then(res => {
+      console.log(res.data);
+    })
+  }
   createLegend(json) {
-    var legend = [];
-    for (var i = 0; i < json["names"].length; i++) {
-      var type = "fa fa-circle text-" + json["types"][i];
+    const legend = [];
+    for (let i = 0; i < json["names"].length; i++) {
+      const type = "fa fa-circle text-" + json["types"][i];
       legend.push(<i className={type} key={i} />);
       legend.push(" ");
       legend.push(json["names"][i]);
