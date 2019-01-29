@@ -1,0 +1,15 @@
+body,
+.wrapper {
+    background: $true-black-color;
+}
+
+.footer {
+    background-color: $black-color;
+    color: $white-color;
+    nav > ul a:not(.btn), a {
+        color: $success-color;
+    }
+    .copyright {
+        color: $white-color;
+    }
+}
