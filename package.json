@@ -2,6 +2,9 @@
   "name": "tymbre",
   "version": "1.0.0",
   "description": "## Concept  Tymbre is an app that allows users to access data analytics from multiple music libraries such as Soundcloud and Spotify to better understand specific musical artists' performance in regards to popularity. Primary factors taken into account are number of streams, royalties, fans, hours played, and number of countries played in. Tymbre also includes its own composite score based on these primary factors that it will use to tier artists into high, mid, and low levels.",
+  "engines": {
+    "node": "10.x"
+  },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
