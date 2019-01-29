@@ -26,8 +26,8 @@ class Dashboard extends Component {
     // API.getArtists().then(data => {
     //   console.log(data);
     // })
-    API.spotifySearch("Michael Jackson").then(data => {
-      console.log(data);
+    API.spotifySearch("Michael Jackson").then(res => {
+      console.log(res.data);
     })
   }
   createLegend(json) {
