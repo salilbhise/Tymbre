@@ -15,7 +15,7 @@ body,
 }
 
 .navbar.fixed {
-    width: calc(100% - calc(100% - 260px));
+    width: calc(100% - #{$sidebar-width});
     right: 0;
     left: auto;
     border-radius: 0; }
