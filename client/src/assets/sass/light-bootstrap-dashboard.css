@@ -15,6 +15,7 @@
 
  */
 /*      light colors         */
+/*      light colors         */
 @keyframes spin {
   from {
     transform: rotate(0deg); }
@@ -3002,3 +3003,15 @@ body > .navbar-collapse[data-color="purple"]:after {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+
+body,
+.wrapper {
+  background: #000000; }
+
+.footer {
+  background-color: #333333;
+  color: #FFFFFF; }
+  .footer nav > ul a:not(.btn), .footer a {
+    color: #87CB16; }
+  .footer .copyright {
+    color: #FFFFFF; }
