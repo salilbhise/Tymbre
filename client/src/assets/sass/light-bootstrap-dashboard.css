@@ -3016,3 +3016,8 @@ body,
   .footer .copyright {
     color: #FFFFFF; }
 
+.navbar.fixed {
+  width: calc(100% - calc(100% - 260px));
+  right: 0;
+  left: auto;
+  border-radius: 0; }
