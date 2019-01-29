@@ -15,6 +15,7 @@
 
  */
 /*      light colors         */
+/*      light colors         */
 @keyframes spin {
   from {
     transform: rotate(0deg); }
@@ -127,7 +128,7 @@ body,
 .wrapper {
   min-height: 100vh;
   position: relative;
-  background-color: #000; }
+  background-color: white; }
 
 a {
   color: #1DC7EA; }
@@ -1570,7 +1571,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     background-color: transparent; }
 
 .footer {
-  background-color: #000;
+  background-color: #FFFFFF;
   line-height: 20px; }
   .footer nav > ul {
     list-style: none;
@@ -1578,17 +1579,17 @@ body > .navbar-collapse[data-color="purple"]:after {
     padding: 0;
     font-weight: normal; }
     .footer nav > ul a:not(.btn) {
-      color: #fff;
+      color: #9A9A9A;
       display: block;
       margin-bottom: 3px; }
       .footer nav > ul a:not(.btn):hover, .footer nav > ul a:not(.btn):focus {
-        color: #fff; }
+        color: #777777; }
   .footer .social-area {
     padding: 15px 0; }
     .footer .social-area h5 {
       padding-bottom: 15px; }
   .footer .social-area > a:not(.btn) {
-    color: #fff;
+    color: #9A9A9A;
     display: inline-block;
     vertical-align: top;
     padding: 10px 5px;
@@ -1597,9 +1598,9 @@ body > .navbar-collapse[data-color="purple"]:after {
     line-height: 20px;
     text-align: center; }
     .footer .social-area > a:not(.btn):hover, .footer .social-area > a:not(.btn):focus {
-      color: #fff; }
+      color: #777777; }
   .footer .copyright {
-    color: #fff;
+    color: #777777;
     padding: 10px 15px;
     margin: 10px 3px;
     line-height: 20px;
@@ -3002,3 +3003,15 @@ body > .navbar-collapse[data-color="purple"]:after {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+
+body,
+.wrapper {
+  background: #000000; }
+
+.footer {
+  background-color: #333333;
+  color: #FFFFFF; }
+  .footer nav > ul a:not(.btn), .footer a {
+    color: #87CB16; }
+  .footer .copyright {
+    color: #FFFFFF; }
