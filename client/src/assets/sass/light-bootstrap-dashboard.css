@@ -127,7 +127,7 @@ body,
 .wrapper {
   min-height: 100vh;
   position: relative;
-  background-color: white; }
+  background-color: #000; }
 
 a {
   color: #1DC7EA; }
@@ -1570,7 +1570,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     background-color: transparent; }
 
 .footer {
-  background-color: #FFFFFF;
+  background-color: #000;
   line-height: 20px; }
   .footer nav > ul {
     list-style: none;
@@ -1578,17 +1578,17 @@ body > .navbar-collapse[data-color="purple"]:after {
     padding: 0;
     font-weight: normal; }
     .footer nav > ul a:not(.btn) {
-      color: #9A9A9A;
+      color: #fff;
       display: block;
       margin-bottom: 3px; }
       .footer nav > ul a:not(.btn):hover, .footer nav > ul a:not(.btn):focus {
-        color: #777777; }
+        color: #fff; }
   .footer .social-area {
     padding: 15px 0; }
     .footer .social-area h5 {
       padding-bottom: 15px; }
   .footer .social-area > a:not(.btn) {
-    color: #9A9A9A;
+    color: #fff;
     display: inline-block;
     vertical-align: top;
     padding: 10px 5px;
@@ -1597,9 +1597,9 @@ body > .navbar-collapse[data-color="purple"]:after {
     line-height: 20px;
     text-align: center; }
     .footer .social-area > a:not(.btn):hover, .footer .social-area > a:not(.btn):focus {
-      color: #777777; }
+      color: #fff; }
   .footer .copyright {
-    color: #777777;
+    color: #fff;
     padding: 10px 15px;
     margin: 10px 3px;
     line-height: 20px;
@@ -2529,8 +2529,8 @@ body > .navbar-collapse[data-color="purple"]:after {
     transform-origin: 29px -50px; }
   .navbar-nav > li > .dropdown-menu:before {
     border-bottom: 11px solid rgba(0, 0, 0, 0.2);
-    border-left: 11px solid rgba(0, 0, 0, 0);
-    border-right: 11px solid rgba(0, 0, 0, 0);
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
     content: "";
     display: inline-block;
     position: absolute;
@@ -2538,8 +2538,8 @@ body > .navbar-collapse[data-color="purple"]:after {
     top: -11px; }
   .navbar-nav > li > .dropdown-menu:after {
     border-bottom: 11px solid #FFFFFF;
-    border-left: 11px solid rgba(0, 0, 0, 0);
-    border-right: 11px solid rgba(0, 0, 0, 0);
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
     content: "";
     display: inline-block;
     position: absolute;
