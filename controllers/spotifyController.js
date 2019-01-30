@@ -1,6 +1,6 @@
 require('dotenv').config();
 const Spotify = require('node-spotify-api');
-const keys = require('../keys/keys.js');
+const keys = require('../keys/spotifyKeys.js');
 const spotify = new Spotify(keys.spotify);
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
       if (err) {
         return console.log(`Error occurred: ${err}`);
       }
-      console.log(data.artists.items[0]);
+      //console.log(data.artists.items[0]);
       res.json(data.artists.items[0]);
     });
   }
