@@ -1,8 +1,9 @@
 .card{
     border-radius: $border-radius-base;
     box-shadow: 0 1px 2px rgba(0,0,0,.05),0 0 0 1px rgba(63,63,68,.1);
-    background-color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.5);
     margin-bottom: 30px;
+    color: #ffffff;
 
     .image{
         width: 100%;
@@ -53,7 +54,7 @@
     label{
         font-size: $font-size-base;
         font-weight: $font-weight-normal;
-        color: $dark-gray;
+        color: #ffffff;
         margin-bottom: 0px;
 
         i{
@@ -64,12 +65,13 @@
     label{
         font-size: $font-size-small;
         margin-bottom: 5px;
+        color: #ffffff;
         text-transform: uppercase;
     }
 
     .title{
         margin: $none;
-        color: $black-color;
+        color: $white-color;
         font-weight: $font-weight-light;
     }
     .avatar{
@@ -81,7 +83,7 @@
     }
     .description{
         font-size: $font-size-base;
-        color: #333;
+        color: #fff;
     }
     .footer{
         padding: 0;
@@ -98,7 +100,7 @@
         }
     }
     .stats{
-        color: #a9a9a9;
+        color: #ffffff;
     }
     .footer div{
         display: inline-block;
@@ -177,6 +179,7 @@
         }
     }
     .title{
+        color: #ffffff;
         line-height: 24px;
     }
     .content{
@@ -206,6 +209,7 @@
 .card-stats{
     .icon-big{
         font-size: 3em;
+        color: #ffffff;
         min-height: 64px;
         i{
             font-weight: bold;
@@ -214,6 +218,7 @@
     }
     .numbers{
         font-size: 2em;
+        color: #ffffff;
         text-align: right;
         p {
            margin: 0;

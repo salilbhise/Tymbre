@@ -785,7 +785,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   background-color: #FFFFFF;
   border: 1px solid #E3E3E3;
   border-radius: 4px;
-  color: #565656;
+  color: #ffffff;
   padding: 8px 12px;
   height: 40px;
   -webkit-box-shadow: none;
@@ -796,7 +796,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important;
-    color: #333333; }
+    color: #ffffff; }
   .has-success .form-control,
   .has-error .form-control,
   .has-success .form-control:focus,
@@ -981,7 +981,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   border-bottom-width: 1px;
   font-size: 12px;
   text-transform: uppercase;
-  color: #9A9A9A;
+  color: #FFFFFF;
   font-weight: 400;
   padding-bottom: 5px; }
 
@@ -1500,7 +1500,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   .navbar-default:not(.navbar-transparent) .btn-neutral,
   .navbar-default:not(.navbar-transparent) .btn-neutral:hover,
   .navbar-default:not(.navbar-transparent) .btn-neutral:active {
-    color: #9A9A9A; }
+    color: #FFFFFF; }
 
 /*      Navbar with icons            */
 .navbar-icons.navbar .navbar-brand {
@@ -1662,7 +1662,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     margin-top: -1px; }
   .dropdown-menu > li > a {
     padding: 8px 16px;
-    color: #333333; }
+    color: #ffffff; }
     .dropdown-menu > li > a img {
       margin-top: -3px; }
   .dropdown-menu > li > a:focus {
@@ -1681,7 +1681,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   .dropdown-menu > li > a:hover,
   .dropdown-menu > li > a:focus {
     background-color: #F5F5F5;
-    color: #333333;
+    color: #ffffff;
     opacity: 1;
     text-decoration: none; }
   .dropdown-menu.dropdown-blue > li > a:hover,
@@ -1724,8 +1724,9 @@ body > .navbar-collapse[data-color="purple"]:after {
 .card {
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-  background-color: #FFFFFF;
-  margin-bottom: 30px; }
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+  color: #ffffff; }
   .card .image {
     width: 100%;
     overflow: hidden;
@@ -1771,7 +1772,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   .card label {
     font-size: 14px;
     font-weight: 400;
-    color: #9A9A9A;
+    color: #ffffff;
     margin-bottom: 0px; }
     .card .category i,
     .card label i {
@@ -1779,10 +1780,11 @@ body > .navbar-collapse[data-color="purple"]:after {
   .card label {
     font-size: 12px;
     margin-bottom: 5px;
+    color: #ffffff;
     text-transform: uppercase; }
   .card .title {
     margin: 0;
-    color: #333333;
+    color: #FFFFFF;
     font-weight: 300; }
   .card .avatar {
     width: 30px;
@@ -1792,7 +1794,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     margin-right: 5px; }
   .card .description {
     font-size: 14px;
-    color: #333; }
+    color: #fff; }
   .card .footer {
     padding: 0;
     background-color: transparent;
@@ -1803,7 +1805,7 @@ body > .navbar-collapse[data-color="purple"]:after {
       margin-top: 5px;
       margin-bottom: 5px; }
   .card .stats {
-    color: #a9a9a9; }
+    color: #ffffff; }
   .card .footer div {
     display: inline-block; }
   .card .author {
@@ -1860,6 +1862,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     border-color: #EEEEEE; }
 
 .card-user .title {
+  color: #ffffff;
   line-height: 24px; }
 
 .card-user .content {
@@ -1882,6 +1885,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 
 .card-stats .icon-big {
   font-size: 3em;
+  color: #ffffff;
   min-height: 64px; }
   .card-stats .icon-big i {
     font-weight: bold;
@@ -1889,13 +1893,14 @@ body > .navbar-collapse[data-color="purple"]:after {
 
 .card-stats .numbers {
   font-size: 2em;
+  color: #ffffff;
   text-align: right; }
   .card-stats .numbers p {
     margin: 0; }
 
 .ct-label {
-  fill: rgba(0, 0, 0, 0.4);
-  color: rgba(0, 0, 0, 0.4);
+  fill: #ffffff;
+  color: #ffffff;
   font-size: 1.3rem;
   line-height: 1; }
 
@@ -3011,7 +3016,8 @@ body,
 .footer {
   background-color: #333333;
   color: #FFFFFF; }
-  .footer nav > ul a:not(.btn), .footer a {
+  .footer nav > ul a:not(.btn),
+  .footer a {
     color: #87CB16; }
   .footer .copyright {
     color: #FFFFFF; }
@@ -3021,3 +3027,10 @@ body,
   right: 0;
   left: auto;
   border-radius: 0; }
+
+.card {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #FFFFFF; }
+
+.numbers {
+  color: #FFFFFF; }

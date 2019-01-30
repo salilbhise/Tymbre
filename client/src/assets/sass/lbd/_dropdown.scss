@@ -28,7 +28,7 @@
     
     > li > a {
        padding: $padding-base-vertical $padding-base-horizontal;
-       color: #333333;
+       color: #ffffff;
        
        img{
            margin-top: -3px;
@@ -60,7 +60,7 @@
     > li > a:hover,
     > li > a:focus {
         background-color: $smoke-bg;
-        color: #333333;
+        color: #ffffff;
         opacity: 1;
         text-decoration: none;
     }
