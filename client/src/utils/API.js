@@ -17,7 +17,13 @@ export default {
   saveArtist: function (artistData) {
     return axios.post("/api/artists", artistData);
   },
-  spotifySearch: function(artist) {
+  spotifySearch: function (artist) {
     return axios.get("/api/spotify/" + artist);
+  },
+  lastFMSearch: function (artist) {
+    return axios.get("/api/lastfm/" + artist);
+  },
+  iTunesSearch: function (artist) {
+    return axios.get("/api/itunes" + artist);
   }
 };
