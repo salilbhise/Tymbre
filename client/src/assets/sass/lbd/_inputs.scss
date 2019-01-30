@@ -15,7 +15,7 @@
     background-color: $white-bg;
     border: 1px solid $light-gray;
     border-radius: $border-radius-base;
-    color: #565656;
+    color: #ffffff;
     @include input-size($padding-base-vertical, $padding-base-horizontal - 4, $height-base);
     @include box-shadow(none);
     
@@ -24,7 +24,7 @@
            border: 1px solid $medium-dark-gray;
            @include box-shadow(none);
            outline: 0 !important;    
-           color: #333333;   
+           color: #ffffff;   
     }
     
     .has-success &,
