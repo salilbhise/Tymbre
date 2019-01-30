@@ -24,6 +24,6 @@ export default {
     return axios.get("/api/lastfm/" + artist);
   },
   iTunesSearch: function (artist) {
-    return axios.get("/api/itunes" + artist);
+    return axios.get("/api/itunes/" + artist);
   }
 };
