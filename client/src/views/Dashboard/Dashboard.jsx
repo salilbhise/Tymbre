@@ -23,12 +23,18 @@ class Dashboard extends Component {
     artist: "Testing"
   }
   componentDidMount() {
-    // API.getArtists().then(data => {
-    //   console.log(data);
-    // })
+    API.getArtists().then(data => {
+      console.log("Mongo Data: ", data);
+    });
     API.spotifySearch("Michael Jackson").then(res => {
-      console.log(res.data);
-    })
+      console.log("Spotify Data: ", res.data);
+    });
+    API.lastFMSearch("Kendrick Lamar").then(res => {
+      console.log("Last.FM Data: ", res.data);
+    });
+    API.iTunesSearch("6lack").then(res => {
+      console.log("iTunes Data: ", res.data);
+    });
   }
   createLegend(json) {
     const legend = [];

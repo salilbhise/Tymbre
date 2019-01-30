@@ -1,4 +1,4 @@
-import Dashboard from "../views/Dashboard/Dashboard";
+import Dash from "../views/Dashboard/Dashboard";
 import UserProfile from "../views/UserProfile/UserProfile";
 import TableList from "../views/TableList/TableList";
 import Typography from "../views/Typography/Typography";
@@ -12,7 +12,7 @@ const dashboardRoutes = [
     path: "/dashboard",
     name: "Dashboard",
     icon: "pe-7s-graph",
-    component: Dashboard
+    component: Dash
   },
   {
     path: "/user",

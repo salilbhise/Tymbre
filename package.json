@@ -37,6 +37,7 @@
     "express": "^4.16.4",
     "firebase-admin": "^6.5.0",
     "if-env": "^1.0.4",
+    "last-fm": "^5.2.2",
     "mongoose": "^5.4.4",
     "node-spotify-api": "^1.0.7",
     "react-router-dom": "^4.3.1"
