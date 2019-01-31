@@ -40,11 +40,10 @@ class Dashboard extends Component {
         break;
     }
     this.state._notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
+      title: <span data-notify="icon" className="pe-7s-graph1" />,
       message: (
         <div>
-          Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
-          every web developer.
+          Welcome to <b>Tymbre</b> - a big-data music analytics app.
         </div>
       ),
       level: level,
@@ -74,12 +73,11 @@ class Dashboard extends Component {
         break;
     }
     _notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
+      title: <span data-notify="icon" className="pe-7s-graph1" />,
       message: (
         <div>
-          Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
-          every web developer.
-        </div>
+        Welcome to <b>Tymbre</b> - a big-data music analytics app.
+      </div>
       ),
       level: level,
       position: "tr",

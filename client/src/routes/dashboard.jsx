@@ -22,29 +22,21 @@ const dashboardRoutes = [
   },
   {
     path: "/table",
-    name: "Table List",
+    name: "Following",
     icon: "pe-7s-note2",
     component: TableList
   },
   {
-    path: "/typography",
-    name: "Typography",
-    icon: "pe-7s-news-paper",
-    component: Typography
-  },
-  { path: "/icons", name: "Icons", icon: "pe-7s-science", component: Icons },
-  { path: "/maps", name: "Maps", icon: "pe-7s-map-marker", component: Maps },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "pe-7s-bell",
-    component: Notifications
+    path: "/about",
+    name: "About",
+    icon: "pe-7s-coffee",
+    component: TableList
   },
   {
     upgrade: true,
     path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "pe-7s-rocket",
+    name: "Send Feedback",
+    icon: "pe-7s-mail",
     component: Upgrade
   },
   { redirect: true, path: "/", to: "/dashboard", name: "Dashboard" }
