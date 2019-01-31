@@ -3032,6 +3032,9 @@ body,
   left: auto;
   border-radius: 0; }
 
+.Image-fluid {
+  flex: center; }
+
 .card {
   background-color: rgba(0, 0, 0, 0.5);
   color: #FFFFFF; }
