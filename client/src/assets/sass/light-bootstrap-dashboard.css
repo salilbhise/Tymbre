@@ -3022,6 +3022,10 @@ body,
   .footer .copyright {
     color: #FFFFFF; }
 
+.navbar-default {
+  background-color: #333333;
+  color: #FFFFFF; }
+
 .navbar.fixed {
   width: calc(100% - calc(100% - 260px));
   right: 0;
