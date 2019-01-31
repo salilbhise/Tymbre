@@ -18,23 +18,71 @@ import {
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
 
+const tempArtistData = {};
+
 class Dashboard extends Component {
   state = {
-    artist: "Testing"
+    artist: "Michael Jackson",
+    artistData: {
+      name: "",
+      genre: "",
+      about: "",
+      spotifyFollowers: 0,
+      lastFMListeners: 0,
+      totalFollowersAndListeners: 0,
+      imageLink: ""
+    }
+  }
+  componentWillMount() {
+    // API.getArtists().then(data => {
+    //   console.log("Mongo Data: ", data);
+    // });
+    API.spotifySearch(this.state.artist).then(res => {
+      console.log("Spotify Data: ", res.data);
+      const tempState = this.state.artistData;
+      tempState.spotifyFollowers = res.data.followers.total;
+      this.setState({
+        artistData: tempState
+      });
+      tempState.imageLink = res.data.images[0].url;
+      this.setState({
+        artistData: tempState
+      })
+      return API.lastFMSearch(this.state.artist)
+        .then(res => {
+          console.log("Last.FM Data: ", res.data.artist);
+          const tempState = this.state.artistData;
+          tempState.lastFMListeners = res.data.artist.stats.listeners;
+          this.setState({
+            artistData: tempState
+          });
+          tempState.about = res.data.artist.bio.summary;
+          this.setState({
+            artistData: tempState
+          });
+          const tempState2 = this.state.artistData;
+          tempState2.totalFollowersAndListeners = parseInt(this.state.artistData.spotifyFollowers) + parseInt(this.state.artistData.lastFMListeners);
+          this.setState({
+            artistData: tempState2
+          })
+        });
+    })
+    API.iTunesSearch(this.state.artist).then(res => {
+      console.log("iTunes Data: ", res.data.results[0]);
+      const tempState = this.state.artistData;
+      tempState.name = res.data.results[0].artistName;
+      this.setState({
+        artistData: tempState
+      });
+      tempState.genre = res.data.results[0].primaryGenreName;
+      this.setState({
+        artistData: tempState
+      });
+    });
   }
   componentDidMount() {
-    API.getArtists().then(data => {
-      console.log("Mongo Data: ", data);
-    });
-    API.spotifySearch("Michael Jackson").then(res => {
-      console.log("Spotify Data: ", res.data);
-    });
-    // API.lastFMSearch("Kendrick Lamar").then(res => {
-    //   console.log("Last.FM Data: ", res.data);
-    // });
-    // API.iTunesSearch("6lack").then(res => {
-    //   console.log("iTunes Data: ", res.data);
-    // });
+    console.log(this.state.artistData);
+
   }
   createLegend(json) {
     const legend = [];
@@ -55,7 +103,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-music text-danger" />}
                 statsText="Listeners"
-                statsValue="33.6M"
+                statsValue={this.state.artistData.lastFMListeners}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -64,7 +112,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-users text-success" />}
                 statsText="Followers"
-                statsValue="20.1M"
+                statsValue={this.state.artistData.spotifyFollowers}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
               />
@@ -82,7 +130,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
                 statsText="Followers"
-                statsValue="43M"
+                statsValue={this.state.artistData.totalFollowersAndListeners}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -114,20 +162,22 @@ class Dashboard extends Component {
             <Col md={4}>
               <Card
                 statsIcon="fa fa-clock-o"
-                title="Email Statistics"
-                category="Last Campaign Performance"
-                stats="Campaign sent 2 days ago"
+                title={this.state.artistData.name}
+                category={this.state.artistData.genre}
+                //stats="Campaign sent 2 days ago"
                 content={
                   <div
                     id="chartPreferences"
                     className="ct-chart ct-perfect-fourth"
                   >
-                    <ChartistGraph data={dataPie} type="Pie" />
+                    <img src={this.state.artistData.imageLink}></img>
+                    <p>{this.state.artistData.about}</p>
+                    {/* <ChartistGraph data={dataPie} type="Pie" /> */}
                   </div>
                 }
-                legend={
-                  <div className="legend">{this.createLegend(legendPie)}</div>
-                }
+              // legend={
+              //   <div className="legend">{this.createLegend(legendPie)}</div>
+              // }
               />
             </Col>
           </Row>

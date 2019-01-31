@@ -5,9 +5,9 @@ const artistSchema = new Schema({
   name: { type: String, required: true },
   genre: { type: String, required: true },
   about: { type: String },
-  spotifyView: { type: Number, },
-  lastFmListeners: { type: Number, },
-  totalViewsAndListeners: { type: Number, },
+  spotifyFollowers: { type: Number, },
+  lastFMListeners: { type: Number, },
+  totalFollowersAndListeners: { type: Number, },
   imageLink: { type: String, },
 });
 
