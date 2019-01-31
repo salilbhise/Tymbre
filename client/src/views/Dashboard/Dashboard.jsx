@@ -29,12 +29,12 @@ class Dashboard extends Component {
     API.spotifySearch("Michael Jackson").then(res => {
       console.log("Spotify Data: ", res.data);
     });
-    API.lastFMSearch("Kendrick Lamar").then(res => {
-      console.log("Last.FM Data: ", res.data);
-    });
-    API.iTunesSearch("6lack").then(res => {
-      console.log("iTunes Data: ", res.data);
-    });
+    // API.lastFMSearch("Kendrick Lamar").then(res => {
+    //   console.log("Last.FM Data: ", res.data);
+    // });
+    // API.iTunesSearch("6lack").then(res => {
+    //   console.log("iTunes Data: ", res.data);
+    // });
   }
   createLegend(json) {
     const legend = [];
