@@ -80,11 +80,11 @@ class Dashboard extends Component {
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
-                bigIcon={<i className="fa fa-twitter text-info" />}
-                statsText="Followers"
-                statsValue="43M"
-                statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="Updated now"
+                bigIcon={<i className="pe-7s-plus text-info" />}
+                statsText="Add"
+                statsValue="Data"
+                statsIcon={<i className="fa fa-plus" />}
+                statsIconText="Artist Info"
               />
             </Col>
           </Row>
@@ -114,9 +114,9 @@ class Dashboard extends Component {
             <Col md={4}>
               <Card
                 statsIcon="fa fa-clock-o"
-                title="Email Statistics"
-                category="Last Campaign Performance"
-                stats="Campaign sent 2 days ago"
+                title="Streaming Statistics"
+                category="Platform Performance"
+                stats="Sent 2 days ago"
                 content={
                   <div
                     id="chartPreferences"
@@ -135,10 +135,10 @@ class Dashboard extends Component {
             <Col md={6}>
               <Card
                 id="chartActivity"
-                title="2014 Sales"
-                category="All products including Taxes"
-                stats="Data information certified"
-                statsIcon="fa fa-check"
+                title="2018 Sales"
+                category="Album & Singles"
+                stats="Estimated Data"
+                statsIcon="fa fa-asterisk"
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
@@ -156,8 +156,8 @@ class Dashboard extends Component {
             </Col>
             <Col md={6}>
               <Card
-                title="Tasks"
-                category="Backend development"
+                title="Tymbre Score"
+                category="Growth Development"
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
                 content={

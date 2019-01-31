@@ -478,21 +478,21 @@ const dataPie = {
   series: [40, 20, 40]
 };
 const legendPie = {
-  names: ["Open", "Bounce", "Unsubscribe"],
+  names: ["Spotify", "LastFM", "iTunes"],
   types: ["info", "danger", "warning"]
 };
 
 // Data for Line Chart
 const dataSales = {
   labels: [
-    "9:00AM",
-    "12:00AM",
-    "3:00PM",
-    "6:00PM",
-    "9:00PM",
-    "12:00PM",
-    "3:00AM",
-    "6:00AM"
+    "7/18",
+    "8/18",
+    "9/18",
+    "10/18",
+    "11/18",
+    "12/18",
+    "1/19",
+    "2/19",
   ],
   series: [
     [287, 385, 490, 492, 554, 586, 698, 695],
@@ -529,7 +529,7 @@ const responsiveSales = [
   ]
 ];
 const legendSales = {
-  names: ["Open", "Click", "Click Second Time"],
+  names: ["Spotify", "LastFM", "iTunes"],
   types: ["info", "danger", "warning"]
 };
 
@@ -575,7 +575,7 @@ const responsiveBar = [
   ]
 ];
 const legendBar = {
-  names: ["Tesla Model S", "BMW 5 Series"],
+  names: ["Singles", "Albums"],
   types: ["info", "danger"]
 };
 

@@ -12,17 +12,17 @@ class Icons extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="About Us"
+                title="202 Awesome Stroke Icons"
                 ctAllIcons
                 category={
                   <span>
-                    Check out our GitHub{" "}
+                    Handcrafted by our friends from{" "}
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://github.com/salilbhise/Tymbre"
+                      href="http://themes-pixeden.com/font-demos/7-stroke/index.html"
                     >
-                      Repo
+                      Pixeden
                     </a>
                   </span>
                 }

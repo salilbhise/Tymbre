@@ -30,7 +30,7 @@ const dashboardRoutes = [
     path: "/about",
     name: "About",
     icon: "pe-7s-coffee",
-    component: TableList
+    component: Icons
   },
   {
     upgrade: true,
