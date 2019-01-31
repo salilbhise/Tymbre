@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import HeaderLinks from "../Header/HeaderLinks.jsx";
 
 import imagine from "../../assets/img/sidebarpulse.gif";
-import logo from "../../assets/img/reactlogo.png";
+import logo from "../../assets/img/tymbreup.png";
 
 import dashboardRoutes from "../../routes/dashboard.jsx";
 
