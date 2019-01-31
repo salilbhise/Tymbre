@@ -16,7 +16,10 @@ body,
         color: $white-color;
     }
 }
-
+.navbar-default {
+    background-color: $black-color;
+    color: $white-color 
+}
 .navbar.fixed {
     width: calc(100% - #{$sidebar-width});
     right: 0;
