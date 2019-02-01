@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
 
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
@@ -76,7 +76,7 @@ class Dashboard extends Component {
       title: <span data-notify="icon" className="pe-7s-graph1" />,
       message: (
         <div>
-        Welcome to <b>Tymbre</b> - a big-data music analytics app.
+          Welcome to <b>Tymbre</b> - a big-data music analytics app.
       </div>
       ),
       level: level,

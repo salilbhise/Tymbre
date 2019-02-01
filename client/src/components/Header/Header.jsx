@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from "react-bootstrap";
 
 import HeaderLinks from "./HeaderLinks.jsx";
 
 import dashboardRoutes from "../../routes/dashboard.jsx";
 
-class Header extends Component {
+export default class Header extends Component {
   constructor(props) {
     super(props);
     this.mobileSidebarToggle = this.mobileSidebarToggle.bind(this);
@@ -56,19 +56,22 @@ class Header extends Component {
   }
   render() {
     return (
-      <Navbar fluid>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#pablo">{this.getBrand()}</a>
-          </Navbar.Brand>
-          <Navbar.Toggle onClick={this.mobileSidebarToggle} />
-        </Navbar.Header>
+      <Navbar className="text-white">
+        <Navbar.Brand>
+          <a href="#pablo">{this.getBrand()}</a>
+        </Navbar.Brand>
+        <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         <Navbar.Collapse>
-          <HeaderLinks />
+          <Nav className="mr-auto justify-content-end text-white">
+            <Nav.Link href="#">Account</Nav.Link>
+            <Nav.Link href="#">Log Out</Nav.Link>
+          </Nav>
+          <Form inline className="my-auto">
+            <FormControl type="text" placeholder="Search for an Artist..." className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
         </Navbar.Collapse>
       </Navbar>
     );
   }
 }
-
-export default Header;
