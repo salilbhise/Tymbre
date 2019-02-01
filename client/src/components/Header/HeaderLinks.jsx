@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import { NavItem, Nav, NavDropdown, MenuItem, Form, FormControl, Button } from "react-bootstrap";
 
 class HeaderLinks extends Component {
   render() {
@@ -13,19 +13,23 @@ class HeaderLinks extends Component {
     );
     return (
       <div>
-        <Nav>
-          <NavItem eventKey={3} href="#">
+        {/* <Nav>
+          <Nav.Item eventKey={3} href="#">
             <i className="fa fa-search" />
             <p className="hidden-lg hidden-md">Search</p>
-          </NavItem>
-        </Nav>
-        <Nav pullRight>
-          <NavItem eventKey={1} href="#">
-            Account
-          </NavItem>
-          <NavItem eventKey={3} href="#">
-            Log out
-          </NavItem>
+          </Nav.Item>
+        </Nav> */}
+        <Nav className="justify-content-end mr-auto" activeKey="/">
+          <Nav.Item eventKey={1} href="#">
+            <Nav.Link href="#">Account</Nav.Link>
+          </Nav.Item>
+          <Nav.Item eventKey={3} href="#">
+            <Nav.Link href="#">Log Out</Nav.Link>
+          </Nav.Item>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
         </Nav>
       </div>
     );

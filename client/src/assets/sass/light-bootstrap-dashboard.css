@@ -1472,7 +1472,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   background-color: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   .navbar-default .navbar-nav > li > a:not(.btn) {
-    color: #9A9A9A; }
+    color: #FFFFFF; }
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:not(.btn):hover,
   .navbar-default .navbar-nav > .active > a:not(.btn):focus,
@@ -3022,9 +3022,10 @@ body,
   .footer .copyright {
     color: #FFFFFF; }
 
-.navbar-default {
+.navbar {
   background-color: #333333;
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  height: 61px; }
 
 .navbar.fixed {
   width: calc(100% - calc(100% - 260px));
@@ -3037,4 +3038,10 @@ body,
   color: #FFFFFF; }
 
 .numbers {
+  color: #FFFFFF; }
+
+.sidebar-wrapper .nav li {
+  width: 100%; }
+
+.nav-link {
   color: #FFFFFF; }

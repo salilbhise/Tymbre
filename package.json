@@ -40,6 +40,8 @@
     "last-fm": "^5.2.2",
     "mongoose": "^5.4.4",
     "node-spotify-api": "^1.0.7",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1"
   }
 }
