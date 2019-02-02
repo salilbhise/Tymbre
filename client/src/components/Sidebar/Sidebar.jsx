@@ -43,7 +43,7 @@ class Sidebar extends Component {
             className="simple-text logo-mini"
           >
             <div className="logo-img">
-              <img src={logo} alt="logo_image" />
+              <img style={{width:100 + "%"}} src={logo} alt="logo_image" />
             </div>
           </a>
           <a

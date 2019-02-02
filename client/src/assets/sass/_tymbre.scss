@@ -16,16 +16,22 @@ body,
         color: $white-color;
     }
 }
+
 .navbar {
     background-color: $black-color;
-    color: $white-color ;
+    color: $white-color;
     height: 61px;
 }
+
 .navbar.fixed {
     width: calc(100% - #{$sidebar-width});
     right: 0;
     left: auto;
     border-radius: 0;
+}
+
+.Image-fluid {
+    flex: center;
 }
 
 .card {
@@ -42,5 +48,19 @@ body,
 }
 
 .nav-link {
+    color: $white-color;
+}
+
+.mr-auto {
+    color: $white-color;
+}
+
+.btn {
+    background-color: rgb(10, 8, 12);
+    color: #05E0F0;
+    border-color: rgb(31, 30, 32);
+}
+
+.table {
     color: $white-color;
 }

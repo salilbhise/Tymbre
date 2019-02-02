@@ -3033,6 +3033,9 @@ body,
   left: auto;
   border-radius: 0; }
 
+.Image-fluid {
+  flex: center; }
+
 .card {
   background-color: rgba(0, 0, 0, 0.5);
   color: #FFFFFF; }
@@ -3044,4 +3047,15 @@ body,
   width: 100%; }
 
 .nav-link {
+  color: #FFFFFF; }
+
+.mr-auto {
+  color: #FFFFFF; }
+
+.btn {
+  background-color: #0a080c;
+  color: #05E0F0;
+  border-color: #1f1e20; }
+
+.table {
   color: #FFFFFF; }

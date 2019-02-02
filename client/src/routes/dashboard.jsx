@@ -1,6 +1,8 @@
 import Dashboard from "../views/Dashboard/Dashboard";
 import UserProfile from "../views/UserProfile/UserProfile";
 import TableList from "../views/TableList/TableList";
+import About from "../views/About/About";
+
 // import Typography from "../views/Typography/Typography";
 // import Icons from "../views/Icons/Icons";
 // import Maps from "../views/Maps/Maps";
@@ -26,11 +28,17 @@ const dashboardRoutes = [
     icon: "pe-7s-note2",
     component: TableList
   },
+  // {
+  //   path: "/trends",
+  //   name: "Trends",
+  //   icon: "pe-7s-note2",
+  //   component: Trends
+  // },
   {
     path: "/about",
     name: "About",
     icon: "pe-7s-coffee",
-    component: TableList
+    component: About
   },
   {
     upgrade: true,
