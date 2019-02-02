@@ -17,11 +17,12 @@ import {
   legendBar
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
-
-const tempArtistData = {};
+import { timingSafeEqual } from "crypto";
 
 class Dashboard extends Component {
   state = {
+    userIsLoggedIn: false,
+    searchBarText: "",
     artist: "Michael Jackson",
     artistData: {
       name: "",
@@ -31,58 +32,63 @@ class Dashboard extends Component {
       lastFMListeners: 0,
       totalFollowersAndListeners: 0,
       imageLink: ""
-    }
+    },
+    headerData: this.props.headerData
   }
-  componentWillMount() {
-    // API.getArtists().then(data => {
-    //   console.log("Mongo Data: ", data);
-    // });
-    API.spotifySearch(this.state.artist).then(res => {
+  renderArtistDataOnPage = artist => {
+    API.spotifySearch(artist).then(res => {
       console.log("Spotify Data: ", res.data);
       const tempState = this.state.artistData;
       tempState.spotifyFollowers = res.data.followers.total;
-      this.setState({
-        artistData: tempState
-      });
       tempState.imageLink = res.data.images[0].url;
       this.setState({
         artistData: tempState
-      })
-      return API.lastFMSearch(this.state.artist)
+      });
+      return API.lastFMSearch(artist)
         .then(res => {
           console.log("Last.FM Data: ", res.data.artist);
           const tempState = this.state.artistData;
           tempState.lastFMListeners = res.data.artist.stats.listeners;
-          this.setState({
-            artistData: tempState
-          });
           tempState.about = res.data.artist.bio.summary;
+          tempState.totalFollowersAndListeners = parseInt(this.state.artistData.spotifyFollowers) + parseInt(this.state.artistData.lastFMListeners);
           this.setState({
             artistData: tempState
           });
-          const tempState2 = this.state.artistData;
-          tempState2.totalFollowersAndListeners = parseInt(this.state.artistData.spotifyFollowers) + parseInt(this.state.artistData.lastFMListeners);
-          this.setState({
-            artistData: tempState2
-          })
         });
     })
-    API.iTunesSearch(this.state.artist).then(res => {
+    API.iTunesSearch(artist).then(res => {
       console.log("iTunes Data: ", res.data.results[0]);
       const tempState = this.state.artistData;
       tempState.name = res.data.results[0].artistName;
-      this.setState({
-        artistData: tempState
-      });
       tempState.genre = res.data.results[0].primaryGenreName;
       this.setState({
         artistData: tempState
       });
     });
   }
+  componentWillMount() {
+    // API.getArtists().then(data => {
+    //   console.log("Mongo Data: ", data);
+    // });
+    this.renderArtistDataOnPage(this.state.artist);
+  }
   componentDidMount() {
-    console.log(this.state.artistData);
+    console.log(this.state.headerData);
+    console.log(this.props.headerData);
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.headerData.name !== prevProps.headerData.name) {
+      this.renderArtistDataOnPage(this.props.headerData.name);
+    }
+  }
 
+  handleFollowButtonClick() {
+    //if user is not logged in
+  }
+  handlePlayUpdateButtonClick() {
+    API.saveArtist({
+      artistData: this.state.artistData
+    })
   }
   createLegend(json) {
     const legend = [];

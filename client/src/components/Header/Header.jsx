@@ -4,12 +4,14 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from "
 import HeaderLinks from "./HeaderLinks.jsx";
 
 import dashboardRoutes from "../../routes/dashboard.jsx";
+import API from "../../utils/API.js";
 
 export default class Header extends Component {
   constructor(props) {
     super(props);
     this.mobileSidebarToggle = this.mobileSidebarToggle.bind(this);
     this.state = {
+      searchArtist: "",
       sidebarExists: false
     };
   }
@@ -54,6 +56,24 @@ export default class Header extends Component {
     });
     return name;
   }
+  //Search Function
+  handleSearchButtonClick = event => {
+    event.preventDefault();
+    if (this.state.searchBarText !== "") {
+      API.spotifySearch(this.state.searchArtist).then(res => {
+        console.log("SearchBarLog", res.data);
+        this.props.recieveDataFromHeader(res.data);
+      })
+    }
+  }
+  //Updates Text on Search Bar
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    console.log(this.state.searchArtist);
+  }
   render() {
     return (
       <Navbar className="text-white">
@@ -63,12 +83,12 @@ export default class Header extends Component {
         <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         <Navbar.Collapse>
           <Nav className="mr-auto justify-content-end text-white">
-            <Nav.Link href="#">Account</Nav.Link>
-            <Nav.Link href="#">Log Out</Nav.Link>
+            <Nav.Link href="#" className="text-white">Account</Nav.Link>
+            <Nav.Link href="#" className="text-white">Log Out</Nav.Link>
           </Nav>
-          <Form inline className="my-auto">
-            <FormControl type="text" placeholder="Search for an Artist..." className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
+          <Form onChange={this.handleInputChange} inline className="my-auto">
+            <FormControl name="searchArtist" type="text" placeholder="Search for an Artist..." className="mr-sm-2 text-dark" />
+            <Button onClick={this.handleSearchButtonClick} className="btn-success" variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>

@@ -20,6 +20,9 @@ export default {
   spotifySearch: function (artist) {
     return axios.get("/api/spotify/" + artist);
   },
+  spotifySearchBarSearch: function (searchArtist) {
+    return axios.get("/api/spotify" + searchArtist);
+  },
   lastFMSearch: function (artist) {
     return axios.get("/api/lastfm/" + artist);
   },
