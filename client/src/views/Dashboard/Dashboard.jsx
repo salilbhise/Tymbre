@@ -17,11 +17,14 @@ import {
   legendBar
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
+import { timingSafeEqual } from "crypto";
 
 const tempArtistData = {};
 
 class Dashboard extends Component {
   state = {
+    userIsLoggedIn: false,
+    searchBarText: "",
     artist: "Michael Jackson",
     artistData: {
       name: "",
@@ -81,8 +84,15 @@ class Dashboard extends Component {
     });
   }
   componentDidMount() {
-    console.log(this.state.artistData);
-
+    //console.log(this.state.artistData);
+  }
+  handleFollowButtonClick() {
+    //if user is not logged in
+  }
+  handlePlayUpdateButtonClick() {
+    API.saveArtist({
+      artistData: this.state.artistData
+    })
   }
   createLegend(json) {
     const legend = [];
