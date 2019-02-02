@@ -18,6 +18,7 @@ import {
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
 import { timingSafeEqual } from "crypto";
+import helpers from "../../utils/helpers.js";
 
 class Dashboard extends Component {
   state = {
@@ -109,7 +110,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-music text-danger" />}
                 statsText="Listeners"
-                statsValue={this.state.artistData.lastFMListeners}
+                statsValue={helpers.abbreviateNumber(this.state.artistData.lastFMListeners)}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -118,7 +119,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-users text-success" />}
                 statsText="Followers"
-                statsValue={this.state.artistData.spotifyFollowers}
+                statsValue={helpers.abbreviateNumber(this.state.artistData.spotifyFollowers)}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
               />
@@ -136,7 +137,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
                 statsText="Followers"
-                statsValue={this.state.artistData.totalFollowersAndListeners}
+                statsValue={helpers.abbreviateNumber(this.state.artistData.totalFollowersAndListeners)}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
