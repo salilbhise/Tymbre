@@ -9,10 +9,19 @@ module.exports = {
     console.log(req.params.artist);
     spotify.search({ type: "artist", query: req.params.artist }, (err, data) => {
       if (err) {
-        return console.log(`Error occurred: ${err}`);
+        return console.log("Error occurred: " + err);
       }
       //console.log(data.artists.items[0]);
       res.json(data.artists.items[0]);
     });
+  },
+  spotifySearchBarSearch: function(req, res) {
+    console.log(req.params.searchArtist);
+    spotify.search({type: "artist", query: req.params.searchArtist}, (err, data) => {
+      if (err) {
+        return console.log("Error occurred: " + err);
+      }
+      res.json(data.artist.items);
+    })
   }
 };

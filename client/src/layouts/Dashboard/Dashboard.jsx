@@ -17,7 +17,8 @@ class Dashboard extends Component {
     this.handleNotificationClick = this.handleNotificationClick.bind(this);
     this.state = {
       _notificationSystem: null,
-      artists: []
+      artists: [],
+      data1: ""
     };
   }
   handleNotificationClick(position) {
@@ -98,32 +99,50 @@ class Dashboard extends Component {
       this.refs.mainPanel.scrollTop = 0;
     }
   }
+  recieveDataFromHeader = headerData => {
+    this.setState({ data1: headerData }, () => {
+      console.log("data1 from Header", headerData);
+    })
+  }
   render() {
     return (
       <div className="wrapper">
         <NotificationSystem ref="notificationSystem" style={style} />
         <Sidebar {...this.props} />
         <div id="main-panel" className="main-panel" ref="mainPanel">
-          <Header {...this.props} />
-          <Switch>
+          <Header {...this.props} data={this.state.headerData} recieveDataFromHeader={this.recieveDataFromHeader} />
+          <Switch
+          >
             {dashboardRoutes.map((prop, key) => {
-              if (prop.name === "Notifications")
-                return (
-                  <Route
-                    path={prop.path}
-                    key={key}
-                    render={routeProps => (
-                      <prop.component
-                        {...routeProps}
-                        handleClick={this.handleNotificationClick}
-                      />
-                    )}
-                  />
-                );
+              // if (prop.name === "Notifications")
+              //   return (
+              //     <Route
+              //       path={prop.path}
+              //       key={key}
+              //       render={routeProps => (
+              //         <prop.component
+              //           {...routeProps}
+              //           headerData={this.state.data1}
+              //         />
+              //       )}
+              //     />
+              //   );
               if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.to} key={key} />;
+                return <Redirect
+                  from={prop.path} to={prop.to} render={routeProps => (
+                    <prop.component
+                      {...routeProps}
+                      headerData={this.state.data1}
+                    />
+                  )} key={key} />;
               return (
-                <Route path={prop.path} component={prop.component} key={key} />
+                <Route
+                  path={prop.path} render={routeProps => (
+                    <prop.component
+                      {...routeProps}
+                      headerData={this.state.data1}
+                    />
+                  )} key={key} />
               );
             })}
           </Switch>
