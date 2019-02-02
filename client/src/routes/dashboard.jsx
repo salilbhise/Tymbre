@@ -29,6 +29,12 @@ const dashboardRoutes = [
     icon: "pe-7s-note2",
     component: TableList
   },
+  // {
+  //   path: "/trends",
+  //   name: "Trends",
+  //   icon: "pe-7s-note2",
+  //   component: Trends
+  // },
   {
     path: "/about",
     name: "About",

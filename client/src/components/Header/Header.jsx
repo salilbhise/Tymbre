@@ -67,7 +67,7 @@ export default class Header extends Component {
             <Nav.Link href="#">Log Out</Nav.Link>
           </Nav>
           <Form inline className="my-auto">
-            <FormControl type="text" placeholder="Search for an Artist..." className="mr-sm-2" />
+            <FormControl type="text" placeholder="Search for an Artist" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
