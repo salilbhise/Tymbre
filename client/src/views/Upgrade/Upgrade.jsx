@@ -14,8 +14,8 @@ class Icons extends Component {
             <Col md={8} mdOffset={2}>
               <Card
                 hCenter
-                title="Light Bootstrap Dashboard PRO React"
-                category="Are you looking for more components? Please check our Premium Version of Light Bootstrap Dashboard React."
+                title="Questions x Comments x Collabs"
+                category="We'd love to hear from you."
                 ctTableResponsive
                 ctTableFullWidth
                 ctTableUpgrade
@@ -24,89 +24,29 @@ class Icons extends Component {
                     <thead>
                       <tr>
                         <th />
-                        <th className="text-center">Free</th>
-                        <th className="text-center">PRO</th>
+                        <th className="text-center">Anthony</th>
+                        <th className="text-center">Sal</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Components</td>
-                        <td>30</td>
-                        <td>60</td>
-                      </tr>
-                      <tr>
-                        <td>Plugins</td>
-                        <td>3</td>
-                        <td>13</td>
-                      </tr>
-                      <tr>
-                        <td>Example Pages</td>
-                        <td>7</td>
-                        <td>24</td>
-                      </tr>
-                      <tr>
-                        <td>Documentation</td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>SASS Files</td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Login/Register/Lock Pages</td>
-                        <td>
-                          <i className="fa fa-times text-danger" />
-                        </td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Premium Support</td>
-                        <td>
-                          <i className="fa fa-times text-danger" />
-                        </td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td />
-                        <td>Free</td>
-                        <td>Just $49</td>
+                        <td>Personal Emails</td>
+                        <td>leanthony104@yahoo.com</td>
+                        <td>hello@salilbhise.com</td>
                       </tr>
                       <tr>
                         <td />
                         <td>
-                          <Button
-                            href="#"
-                            round
-                            fill
-                            disabled
-                            bsStyle="default"
-                          >
-                            Current Version
-                          </Button>
                         </td>
                         <td>
                           <Button
                             target="_blank"
-                            href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro-react/?ref=lbd-react-free"
+                            href="mailto:tymbreapp@gmail.com"
                             round
                             fill
                             bsStyle="info"
                           >
-                            Upgrade to PRO
+                            Email Tymbre
                           </Button>
                         </td>
                       </tr>
