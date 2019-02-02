@@ -62,6 +62,7 @@ export default class Header extends Component {
     if (this.state.searchBarText !== "") {
       API.spotifySearch(this.state.searchArtist).then(res => {
         console.log("SearchBarLog", res.data);
+        this.props.recieveDataFromHeader(res.data);
       })
     }
   }
