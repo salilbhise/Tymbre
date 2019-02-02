@@ -31,8 +31,8 @@ class Icons extends Component {
                     <tbody>
                       <tr>
                         <td>Personal Emails</td>
-                        <td>leanthony104@yahoo.com</td>
-                        <td>hello@salilbhise.com</td>
+                        <td><a href="mailto:leanthony104@yahoo.com" target="_blank">leanthony104@yahoo.com</a></td>
+                        <td><a href="mailto:hello@salilbhise.com" target="_blank">hello@salilbhise.com</a></td>
                       </tr>
                       <tr>
                         <td />

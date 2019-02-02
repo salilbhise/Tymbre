@@ -43,7 +43,7 @@ class Dashboard extends Component {
       title: <span data-notify="icon" className="pe-7s-graph1" />,
       message: (
         <div>
-          Welcome to <b>Tymbre</b> - a big-data music analytics app.
+          Welcome to <b>Tymbre</b>! A Big-Data Music Analytics App.
         </div>
       ),
       level: level,
@@ -76,7 +76,7 @@ class Dashboard extends Component {
       title: <span data-notify="icon" className="pe-7s-graph1" />,
       message: (
         <div>
-          Welcome to <b>Tymbre</b> - a big-data music analytics app.
+          Welcome to <b>Tymbre</b>! A Big-Data Music Analytics App.
       </div>
       ),
       level: level,
