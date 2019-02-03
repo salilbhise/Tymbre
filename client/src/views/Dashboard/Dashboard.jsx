@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 // import Image from 'react-bootstrap/Image';
 import ChartistGraph from "react-chartist";
-import { Container, Row, Col, Button} from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
 import { Tasks } from "../../components/Tasks/Tasks.jsx";
 import {
-  dataPie,
-  legendPie,
+  //dataPie,
+  //legendPie,
   dataSales,
   optionsSales,
   responsiveSales,
@@ -18,7 +18,7 @@ import {
   legendBar
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
-import { timingSafeEqual } from "crypto";
+//import { timingSafeEqual } from "crypto";
 import helpers from "../../utils/helpers.js";
 
 class Dashboard extends Component {
@@ -111,7 +111,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-music text-danger" />}
                 statsText="Listeners"
-                statsValue={helpers.abbreviateNumber(this.state.artistData.lastFMListeners)}
+                statsValue={(helpers.abbreviateNumber(this.state.artistData.lastFMListeners))}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -178,7 +178,7 @@ class Dashboard extends Component {
                     id="chartPreferences"
                     className="ct-chart ct-perfect-fourth"
                   >
-                    <img style={{height: 300 +'px'}} src={this.state.artistData.imageLink}></img>
+                    <img style={{ height: 300 + 'px' }} src={this.state.artistData.imageLink}></img>
                     <p>{this.state.artistData.about}</p>
                     {/* <ChartistGraph data={dataPie} type="Pie" /> */}
                   </div>
@@ -187,9 +187,9 @@ class Dashboard extends Component {
               //   <div className="legend">{this.createLegend(legendPie)}</div>
               // }
               />
-                  <Button variant="outline-success">Follow</Button>
-                  <Button variant="outline-success">Update</Button>
-                  <Button variant="outline-success">Bio</Button>
+              <Button variant="outline-success">Follow</Button>
+              <Button variant="outline-success">Update</Button>
+              <Button variant="outline-success">Bio</Button>
             </Col>
           </Row>
           <Row>

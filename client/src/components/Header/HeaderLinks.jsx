@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavItem, Nav, NavDropdown, MenuItem, Form, FormControl, Button } from "react-bootstrap";
+import { Nav, Form, FormControl, Button } from "react-bootstrap";
 
 class HeaderLinks extends Component {
   render() {

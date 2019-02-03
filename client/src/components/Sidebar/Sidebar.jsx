@@ -38,14 +38,14 @@ class Sidebar extends Component {
       >
         <div className="sidebar-background" style={sidebarBackground} />
         <div className="logo">
-          <a
+          <i
             href="#"
             className="simple-text logo-mini"
           >
             <div className="logo-img">
-              <img style={{width:100 + "%"}} src={logo} alt="logo_image" />
+              <img style={{ width: 100 + "%" }} src={logo} alt="logo_image" />
             </div>
-          </a>
+          </i>
           <a
             href="#"
             className="simple-text logo-normal"
