@@ -111,7 +111,6 @@ class Dashboard extends Component {
   handlePlayUpdateButtonClick = event => {
     event.preventDefault();
     API.getArtists().then(res => {
-      let dbArray = res.data;
       console.log((helpers.artistSearch(res.data, this.state.artistData.name)));
       if (helpers.artistSearch(res.data, this.state.artistData.name) === false) {
         API.saveArtist({
