@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import Image from 'react-bootstrap/Image';
 import ChartistGraph from "react-chartist";
-import { Container, Row, Col, Button, Modal, Image } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal, Image, } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
 import { Tasks } from "../../components/Tasks/Tasks.jsx";
@@ -20,7 +20,6 @@ import {
 import API from "../../utils/API.js";
 //import { timingSafeEqual } from "crypto";
 import helpers from "../../utils/helpers.js";
-
 class Dashboard extends Component {
   state = {
     userIsLoggedIn: false,
@@ -30,19 +29,23 @@ class Dashboard extends Component {
       name: "",
       genre: "",
       about: "",
-      spotifyFollowers: 0,
-      lastFMListeners: 0,
       totalFollowersAndListeners: 0,
-      imageLink: ""
+      imageLink: "",
+      data: [{
+        spotifyFollowers: 0,
+        lastFMListeners: 0,
+        hoursListened: 0,
+        estimatedRevenue: 0
+      }]
     },
     headerData: this.props.headerData,
-    modalShow: false
+    bioModalShow: false,
   }
   renderArtistDataOnPage = artist => {
     API.spotifySearch(artist).then(res => {
       console.log("Spotify Data: ", res.data);
       const tempState = this.state.artistData;
-      tempState.spotifyFollowers = res.data.followers.total;
+      tempState.data.spotifyFollowers = res.data.followers.total;
       tempState.imageLink = res.data.images[0].url;
       this.setState({
         artistData: tempState
@@ -51,16 +54,26 @@ class Dashboard extends Component {
         .then(res => {
           console.log("Last.FM Data: ", res.data.artist);
           const tempState = this.state.artistData;
-          tempState.lastFMListeners = res.data.artist.stats.listeners;
+          tempState.data.lastFMListeners = res.data.artist.stats.listeners;
           tempState.about = res.data.artist.bio.content;
-          tempState.totalFollowersAndListeners = parseInt(this.state.artistData.spotifyFollowers) + parseInt(this.state.artistData.lastFMListeners);
+          tempState.totalFollowersAndListeners = parseInt(this.state.artistData.data.spotifyFollowers) + parseInt(this.state.artistData.data.lastFMListeners);
+          tempState.data.estimatedRevenue = (parseInt(tempState.data.lastFMListeners) * 0.00275) + (parseInt(tempState.data.spotifyFollowers) * 0.0084);
           this.setState({
             artistData: tempState
           });
+          return API.iTunesTrackInformationSearch(artist).then(res => {
+            console.log("Track Data: ", res.data);
+            const tempState = this.state.artistData;
+            let trackArray = res.data;
+            tempState.data.hoursListened = helpers.msToTime(tempState.totalFollowersAndListeners * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0));
+            this.setState({
+              artistData: tempState
+            })
+          })
         });
     })
     API.iTunesSearch(artist).then(res => {
-      console.log("iTunes Data: ", res.data.results[0]);
+      console.log("iTunes Data: ", res.data);
       const tempState = this.state.artistData;
       tempState.name = res.data.results[0].artistName;
       tempState.genre = res.data.results[0].primaryGenreName;
@@ -70,14 +83,16 @@ class Dashboard extends Component {
     });
   }
   componentWillMount() {
-    // API.getArtists().then(data => {
-    //   console.log("Mongo Data: ", data);
-    // });
+    API.getArtists().then(res => {
+      console.log("Mongo Data: ", res.data);
+    });
     this.renderArtistDataOnPage(this.state.artist);
   }
   componentDidMount() {
-    console.log(this.state.headerData);
-    console.log(this.props.headerData);
+    API.iTunesTrackInformationSearch(this.state.artist).then(res => {
+      console.log("Track Info iTunes: ", res.data);
+    })
+    console.log(this.state.artistData);
   }
   componentDidUpdate(prevProps) {
     if (this.props.headerData.name !== prevProps.headerData.name) {
@@ -85,17 +100,46 @@ class Dashboard extends Component {
     }
   }
   handleModalClose = () => {
-    this.setState({ modalShow: false });
+    this.setState({ bioModalShow: false });
   }
   handleModalShow = () => {
-    this.setState({ modalShow: true });
+    this.setState({ bioModalShow: true });
   }
   handleFollowButtonClick() {
     //if user is not logged in
   }
-  handlePlayUpdateButtonClick() {
-    API.saveArtist({
-      artistData: this.state.artistData
+  handlePlayUpdateButtonClick = event => {
+    event.preventDefault();
+    API.getArtists().then(res => {
+      let dbArray = res.data;
+      console.log((helpers.artistSearch(res.data, this.state.artistData.name)));
+      if (helpers.artistSearch(res.data, this.state.artistData.name) === false) {
+        API.saveArtist({
+          name: this.state.artistData.name,
+          genre: this.state.artistData.genre,
+          about: this.state.artistData.about,
+          totalFollowersAndListeners: this.state.artistData.totalFollowersAndListeners,
+          imageLink: this.state.artistData.imageLink,
+          data: [
+            {
+              date: Date.now(),
+              spotifyFollowers: this.state.artistData.data.spotifyFollowers,
+              lastFMListeners: parseInt(this.state.artistData.data.lastFMListeners),
+              estimatedRevenue: this.state.artistData.data.estimatedRevenue,
+              hoursListened: this.state.artistData.data.hoursListened
+            }
+          ]
+        })
+      } else {
+        let id = helpers.artistSearch(res.data, this.state.artistData.name);
+        API.updateArtist((id), {
+          date: Date.now(),
+          spotifyFollowers: this.state.artistData.data.spotifyFollowers,
+          lastFMListeners: parseInt(this.state.artistData.data.lastFMListeners),
+          estimatedRevenue: this.state.artistData.data.estimatedRevenue,
+          hoursListened: this.state.artistData.data.hoursListened
+        })
+      }
     })
   }
   createLegend(json) {
@@ -117,7 +161,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-music text-danger" />}
                 statsText="Listeners"
-                statsValue={(helpers.abbreviateNumber(this.state.artistData.lastFMListeners))}
+                statsValue={(helpers.abbreviateNumber(this.state.artistData.data.lastFMListeners))}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -126,7 +170,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-users text-success" />}
                 statsText="Followers"
-                statsValue={helpers.abbreviateNumber(this.state.artistData.spotifyFollowers)}
+                statsValue={helpers.abbreviateNumber(this.state.artistData.data.spotifyFollowers)}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
               />
@@ -134,8 +178,8 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-global text-primary" />}
-                statsText="Countries"
-                statsValue="65"
+                statsText={"Hours Listened *"}
+                statsValue={helpers.abbreviateNumber(this.state.artistData.data.hoursListened)}
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
               />
@@ -143,8 +187,8 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
-                statsText="Followers"
-                statsValue={helpers.abbreviateNumber(this.state.artistData.totalFollowersAndListeners)}
+                statsText="Est. Streaming Royalties*"
+                statsValue={"$" + helpers.abbreviateNumber(this.state.artistData.data.estimatedRevenue)}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -189,14 +233,14 @@ class Dashboard extends Component {
                     </Row>
                     <Row>
                       <button type="button" className="my-4 mx-1 btn btn-primary" >Follow</button>
-                      <Button className="my-4 mx-1" variant="outline-success">Update</Button>
+                      <Button className="my-4 mx-1" variant="outline-success" onClick={this.handlePlayUpdateButtonClick}>Update</Button>
                       <Button className="my-4 mx-1" variant="secondary" onClick={this.handleModalShow}>Bio</Button>
                     </Row>
                   </Container>
                 }
               />
               {/* startModal */}
-              <Modal show={this.state.modalShow} onHide={this.handleClose}>
+              <Modal size="lg" show={this.state.bioModalShow} onHide={this.handleModalClose}>
                 <Modal.Header>
                   <Modal.Title>{this.state.artistData.name}'s Biography</Modal.Title>
                 </Modal.Header>

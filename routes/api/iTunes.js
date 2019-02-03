@@ -6,4 +6,7 @@ router
   .route("/:artist")
   .get(iTunesController.iTunesSearch)
 
+  router.route("/albumSearch/:artist")
+  .get(iTunesController.iTunesTrackInformationSearch);
+
 module.exports = router;

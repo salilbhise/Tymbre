@@ -14,8 +14,11 @@ export default {
     return axios.delete("/api/artists/" + id);
   },
   // Saves a artist to the database
-  saveArtist: function (artistData) {
-    return axios.post("/api/artists", artistData);
+  saveArtist: function (artistDatabase) {
+    return axios.post("/api/artists", artistDatabase);
+  },
+  updateArtist: function(id, req) {
+    return axios.put("/api/artists/" + id, req);
   },
   spotifySearch: function (artist) {
     return axios.get("/api/spotify/" + artist);
@@ -28,5 +31,8 @@ export default {
   },
   iTunesSearch: function (artist) {
     return axios.get("/api/itunes/" + artist);
+  },
+  iTunesTrackInformationSearch: function (artist) {
+    return axios.get("/api/itunes/albumSearch/" + artist);
   }
 };
