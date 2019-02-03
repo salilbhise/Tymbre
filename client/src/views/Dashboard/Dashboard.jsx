@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import Image from 'react-bootstrap/Image';
 import ChartistGraph from "react-chartist";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal, Image } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
 import { Tasks } from "../../components/Tasks/Tasks.jsx";
@@ -35,7 +35,8 @@ class Dashboard extends Component {
       totalFollowersAndListeners: 0,
       imageLink: ""
     },
-    headerData: this.props.headerData
+    headerData: this.props.headerData,
+    modalShow: false
   }
   renderArtistDataOnPage = artist => {
     API.spotifySearch(artist).then(res => {
@@ -51,7 +52,7 @@ class Dashboard extends Component {
           console.log("Last.FM Data: ", res.data.artist);
           const tempState = this.state.artistData;
           tempState.lastFMListeners = res.data.artist.stats.listeners;
-          tempState.about = res.data.artist.bio.summary;
+          tempState.about = res.data.artist.bio.content;
           tempState.totalFollowersAndListeners = parseInt(this.state.artistData.spotifyFollowers) + parseInt(this.state.artistData.lastFMListeners);
           this.setState({
             artistData: tempState
@@ -83,7 +84,12 @@ class Dashboard extends Component {
       this.renderArtistDataOnPage(this.props.headerData.name);
     }
   }
-
+  handleModalClose = () => {
+    this.setState({ modalShow: false });
+  }
+  handleModalShow = () => {
+    this.setState({ modalShow: true });
+  }
   handleFollowButtonClick() {
     //if user is not logged in
   }
@@ -169,27 +175,39 @@ class Dashboard extends Component {
             </Col>
             <Col md={4}>
               <Card
-                statsIcon="fa fa-clock-o"
                 title={this.state.artistData.name}
                 category={this.state.artistData.genre}
                 //stats="Campaign sent 2 days ago"
                 content={
-                  <div
-                    id="chartPreferences"
-                    className="ct-chart ct-perfect-fourth"
-                  >
-                    <img style={{ height: 300 + 'px' }} src={this.state.artistData.imageLink}></img>
-                    <p>{this.state.artistData.about}</p>
-                    {/* <ChartistGraph data={dataPie} type="Pie" /> */}
-                  </div>
+                  <Container>
+                    <Row>
+                      <Col></Col>
+                      <Col xs={8}>
+                        <Image fluid roundedCircle className="m-auto artistPicture" src={this.state.artistData.imageLink}></Image>
+                      </Col>
+                      <Col></Col>
+                    </Row>
+                    <Row>
+                      <button type="button" className="my-4 mx-1 btn btn-primary" >Follow</button>
+                      <Button className="my-4 mx-1" variant="outline-success">Update</Button>
+                      <Button className="my-4 mx-1" variant="secondary" onClick={this.handleModalShow}>Bio</Button>
+                    </Row>
+                  </Container>
                 }
-              // legend={
-              //   <div className="legend">{this.createLegend(legendPie)}</div>
-              // }
               />
-              <Button variant="outline-success">Follow</Button>
-              <Button variant="outline-success">Update</Button>
-              <Button variant="outline-success">Bio</Button>
+              {/* startModal */}
+              <Modal show={this.state.modalShow} onHide={this.handleClose}>
+                <Modal.Header>
+                  <Modal.Title>{this.state.artistData.name}'s Biography</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{this.state.artistData.about}</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary" onClick={this.handleModalClose}>
+                    Okay
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              {/* endModal */}
             </Col>
           </Row>
           <Row>
