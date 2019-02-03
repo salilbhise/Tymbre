@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
-import HeaderLinks from "./HeaderLinks.jsx";
+//import HeaderLinks from "./HeaderLinks.jsx";
 
 import dashboardRoutes from "../../routes/dashboard.jsx";
 import API from "../../utils/API.js";
@@ -11,7 +11,7 @@ export default class Header extends Component {
     super(props);
     this.mobileSidebarToggle = this.mobileSidebarToggle.bind(this);
     this.state = {
-      searchArtist: "",
+      //searchArtist: "",
       sidebarExists: false
     };
   }
@@ -59,10 +59,12 @@ export default class Header extends Component {
   //Search Function
   handleSearchButtonClick = event => {
     event.preventDefault();
-    if (this.state.searchBarText !== "") {
+    if (this.state.searchArtist !== "") {
       API.spotifySearch(this.state.searchArtist).then(res => {
         console.log("SearchBarLog", res.data);
         this.props.recieveDataFromHeader(res.data);
+        this.setState({ searchArtist: "" })
+
       })
     }
   }
@@ -88,7 +90,7 @@ export default class Header extends Component {
           </Nav>
           <Form onChange={this.handleInputChange} inline className="my-auto">
             <FormControl name="searchArtist" type="text" placeholder="Search for an Artist..." className="mr-sm-2 text-dark" />
-            <Button onClick={this.handleSearchButtonClick} className="btn-success" variant="outline-success">Search</Button>
+            <Button disabled={!(this.state.searchArtist)} onClick={this.handleSearchButtonClick} className="btn btn-primary" >Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>
