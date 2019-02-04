@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row } from "react-bootstrap";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -141,10 +141,12 @@ class Dashboard extends Component {
             a : the resonance by which the ear recognizes and identifies a voiced speech sound<br />
             b : the quality of tone distinctive of a particular singing voice or musical instrument
         </h3>
-          <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
-          {
-            this.renderRedirect()
-          }
+          <Row>
+            <Button size="lg" variant="success" className="m-auto text-center" onClick={this.handleToDashBoard}>🎶</Button>
+            {
+              this.renderRedirect()
+            }
+          </Row>
           <Switch
           >
           </Switch>
