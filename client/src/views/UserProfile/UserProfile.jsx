@@ -13,7 +13,7 @@ import { FormInputs } from "../../components/FormInputs/FormInputs.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 
-import avatar from "../../assets/img/faces/face-3.jpg";
+import avatar from "../../assets/img/faces/face-8.png";
 
 class UserProfile extends Component {
   render() {
@@ -30,11 +30,11 @@ class UserProfile extends Component {
                       ncols={["col-md-5", "col-md-3", "col-md-4"]}
                       proprieties={[
                         {
-                          label: "Company (disabled)",
+                          label: "Company",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Company",
-                          defaultValue: "Creative Code Inc.",
+                          defaultValue: "TymbreApp",
                           disabled: true
                         },
                         {
@@ -113,7 +113,7 @@ class UserProfile extends Component {
                     <Row>
                       <Col md={12}>
                         <FormGroup controlId="formControlsTextarea">
-                          <FormLabel>About Me</FormLabel>
+                          <FormLabel>Favorite Song Lyric</FormLabel>
                           <FormControl
                             rows="5"
                             componentClass="textarea"
@@ -136,15 +136,19 @@ class UserProfile extends Component {
               <UserCard
                 bgImage="https://image.freepik.com/free-photo/white-brick-wall-background_1203-2759.jpg"
                 avatar={avatar}
-                name="Mike Andrew"
-                userName="michael24"
+                name="Lil Avatar"
+                userName="esskeetit"
                 description={
                   <span>
-                    "Lamborghini Mercy
+                    "My lean cost more than your rent, it do
                     <br />
-                    Your chick she so thirsty
+                    Your momma still live in a tent
                     <br />
-                    I'm in that two seat Lambo"
+                    Still slanging dope in the 'jects
+                    <br />
+                    Me and my grandma take meds"
+                    <br />
+                    - Lil Pump
                   </span>
                 }
                 socials={
