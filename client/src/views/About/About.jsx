@@ -3,82 +3,81 @@ import { Row, Col, Container } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
-
 import avatar from "../../assets/img/faces/salface.png";
 
 
 function About() {
   return (<div className="content">
     <Container>
-    <Row>
-      <Col md={6}>
-        <UserCard
-          bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-          avatar={avatar}
-          name="Anthony Le"
-          userName="aale12"
-          description={
-            <span>
-              "Lamborghini Mercy
+      <Row>
+        <Col md={6}>
+          <UserCard
+            bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+            avatar={avatar}
+            name="Anthony Le"
+            userName="aale12"
+            description={
+              <span>
+                "Lamborghini Mercy
                     <br />
-              Your chick she so thirsty
+                Your chick she so thirsty
                     <br />
-              I'm in that two seat Lambo"
+                I'm in that two seat Lambo"
                   </span>
-          }
-          socials={
-            <div>
-              <Button simple>
-                <i className="fa fa-facebook-square" />
-              </Button>
-              <Button simple>
-                <i className="fa fa-twitter" />
-              </Button>
-              <Button simple>
-                <i className="fa fa-google-plus-square" />
-              </Button>
-            </div>
-          }
-        />
-      </Col>
-      <Col md={6}>
-        <UserCard
-          bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-          avatar={avatar}
-          name="Salil Bhise"
-          userName="newamsterdamn"
-          description={
-            <span>
-              "Lamborghini Mercy
+            }
+            socials={
+              <div>
+                <Button simple>
+                  <i className="fa fa-facebook-square" />
+                </Button>
+                <Button simple>
+                  <i className="fa fa-twitter" />
+                </Button>
+                <Button simple>
+                  <i className="fa fa-google-plus-square" />
+                </Button>
+              </div>
+            }
+          />
+        </Col>
+        <Col md={6}>
+          <UserCard
+            bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+            avatar={avatar}
+            name="Salil Bhise"
+            userName="newamsterdamn"
+            description={
+              <span>
+                "Lamborghini Mercy
                     <br />
-              Your chick she so thirsty
+                Your chick she so thirsty
                     <br />
-              I'm in that two seat Lambo"
+                I'm in that two seat Lambo"
                   </span>
-          }
-          socials={
-            <div>
-              <Button simple>
-                <i className="fa fa-facebook-square" />
-              </Button>
-              <Button simple>
-                <i className="fa fa-twitter" />
-              </Button>
-              <Button simple>
-                <i className="fa fa-google-plus-square" />
-              </Button>
+            }
+            socials={
+              <div>
+                <Button simple>
+                  <i className="fa fa-facebook-square" />
+                </Button>
+                <Button simple>
+                  <i className="fa fa-twitter" />
+                </Button>
+                <Button simple>
+                  <i className="fa fa-google-plus-square" />
+                </Button>
 
-            </div>
-          }
-        />
-      </Col>
+              </div>
+            }
+          />
+        </Col>
       </Row>
-      </Container>
+    </Container>
   </div>)
-  }
-  
-  
-  
-  
-  
+}
+
+
+
+
+
 export default About;

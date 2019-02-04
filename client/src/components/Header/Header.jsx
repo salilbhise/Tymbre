@@ -64,7 +64,6 @@ export default class Header extends Component {
         console.log("SearchBarLog", res.data);
         this.props.recieveDataFromHeader(res.data);
         this.setState({ searchArtist: "" })
-
       })
     }
   }

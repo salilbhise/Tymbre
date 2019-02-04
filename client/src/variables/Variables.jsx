@@ -504,7 +504,7 @@ const optionsSales = {
   low: 0,
   high: 800,
   showArea: false,
-  height: "245px",
+  height: "230px",
   axisX: {
     showGrid: false
   },
@@ -513,7 +513,9 @@ const optionsSales = {
   showPoint: true,
   fullWidth: true,
   chartPadding: {
-    right: 50
+    right: 50,
+    left: 65,
+    top: 25
   }
 };
 const responsiveSales = [
