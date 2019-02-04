@@ -1336,7 +1336,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   background-color: transparent; }
 
 .navbar {
-  border: 0;
+  border-bottom: 1px solid;
   font-size: 16px;
   border-radius: 0; }
   .navbar .navbar-brand {
@@ -3011,7 +3011,13 @@ body > .navbar-collapse[data-color="purple"]:after {
 
 body,
 .wrapper {
-  background: #000000; }
+  background-image: url("https://images.wallpaperscraft.com/image/black_background_lines_scratches_69440_1920x1080.jpg"); }
+
+.main-panel {
+  flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  margin: 0px auto; }
 
 .footer {
   background-color: #333333;
