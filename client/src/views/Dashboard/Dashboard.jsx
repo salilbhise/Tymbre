@@ -234,13 +234,8 @@ class Dashboard extends Component {
                 bigIcon={<i className="fa fa-money text-success" />}
                 statsText="Streaming Royalties"
                 statsValue={"$" + helpers.abbreviateNumber(this.state.artistData.data.estimatedRevenue)}
-<<<<<<< HEAD
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText={this.state.lastUpdated + " ago"}
-=======
-                statsIcon={<i className="fa fa-asterisk" />}
-                statsIconText="Monthly Estimate"
->>>>>>> master
               />
             </Col>
           </Row>
