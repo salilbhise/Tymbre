@@ -4,7 +4,7 @@ import { Card } from "../../components/Card/Card.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 import avatar from "../../assets/img/faces/salface.png";
-
+ const image = "https://gl-images.condecdn.net/image/DLl1XeQ691J/crop/200/square/f/mark-zuckerberg_glamour_26jan16_pa_b.jpg"
 
 function About() {
   return (<div className="content">
@@ -12,8 +12,8 @@ function About() {
       <Row>
         <Col md={6}>
           <UserCard
-            bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-            avatar={avatar}
+            bgImage="https://image.freepik.com/free-photo/white-brick-wall-background_1203-2759.jpg"
+            avatar={image}
             name="Anthony Le"
             userName="aale12"
             description={
@@ -42,7 +42,7 @@ function About() {
         </Col>
         <Col md={6}>
           <UserCard
-            bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+            bgImage="https://image.freepik.com/free-photo/white-brick-wall-background_1203-2759.jpg"
             avatar={avatar}
             name="Salil Bhise"
             userName="newamsterdamn"
