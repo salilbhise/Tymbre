@@ -57,12 +57,12 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log("Landing Page Trigger: ", this.state.landingPage);
     const self = this;
-    setTimeout(function(){
-      self.setState({
-        landingPage: false,
-        redirect: true
-      })
-    }, 30000)
+    // setTimeout(function(){
+    //   self.setState({
+    //     landingPage: false,
+    //     redirect: true
+    //   })
+    // }, 30000)
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     var color = Math.floor(Math.random() * 4 + 1);
