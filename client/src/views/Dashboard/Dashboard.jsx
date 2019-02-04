@@ -170,6 +170,8 @@ class Dashboard extends Component {
               hoursListened: this.state.artistData.data.hoursListened
             }
           ]
+        }).then(res => {
+          this.renderArtistDataOnPage(this.props.headerData.name);
         })
       } else {
         let id = helpers.artistSearch(res.data, this.state.artistData.name);
@@ -179,9 +181,11 @@ class Dashboard extends Component {
           lastFMListeners: parseInt(this.state.artistData.data.lastFMListeners),
           estimatedRevenue: this.state.artistData.data.estimatedRevenue,
           hoursListened: this.state.artistData.data.hoursListened
+        }).then(res => {
+          this.renderArtistDataOnPage(this.props.headerData.name);
         })
       }
-    })
+    });
   }
   createLegend(json) {
     const legend = [];

@@ -115,7 +115,7 @@ class Dashboard extends Component {
   render() {
     return (this.state.landingPage === true) ?
       (
-        <Container className="landingContainer text-white">
+        <Container fluid className="landingContainer text-white">
           This is the tymbre landing page
         <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
           <Switch
