@@ -120,7 +120,10 @@ class Dashboard extends Component {
                   console.log(helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date));
                   console.log(helpers.determineTymbreRating(dataArray[0].date, dataArray[dataArray.length - 1].date, helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)));
                   this.setState({
-                    tymbreRating: helpers.determineTymbreRating(dataArray[0].date, dataArray[dataArray.length - 1].date, helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)),
+                    tymbreRating: helpers.determineTymbreRating(
+                      dataArray[0].spotifyFollowers + dataArray[0].lastFMListeners,
+                      dataArray[dataArray.length - 1].spotifyFollowers + dataArray[dataArray.length - 1].lastFMListeners,
+                      helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)),
                     graphData: tempGraph,
                     graphOptions: tempOptions,
                     lastUpdated: (helpers.timeSince(Math.max(...timeArray))),

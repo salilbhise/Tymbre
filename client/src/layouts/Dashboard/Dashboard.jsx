@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row } from "react-bootstrap";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -120,26 +120,33 @@ class Dashboard extends Component {
       console.log("data1 from Header", headerData);
     })
   }
-  renderRedirect = () =>{
-    if(this.state.redirect == true){
-      return <Redirect to="/dashboard"/>
+  renderRedirect = () => {
+    if (this.state.redirect == true) {
+      return <Redirect to="/dashboard" />
     }
   }
-  
+
   render() {
     return (this.state.landingPage === true) ?
       (
-        <Container fluid className="landingContainer text-white">
-          tym·​bre | \ ˈtam-bər  , ˈtim-; ˈtam(brᵊ)\
-          : the quality given to a sound by its overtones: such as
-a : the resonance by which the ear recognizes and identifies a voiced speech sound
-b : the quality of tone distinctive of a particular singing voice or musical instrument
-
-      
-        <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
-        {
-         this.renderRedirect()
-        }
+        <Container className="landingContainer text-white">
+          <h1 className="titleContainer text-center">
+            Tymbre
+        </h1>
+          <h2 className="text-center">
+            from timbre - tym·​bre | \ ˈtam-bər  , ˈtim-; ˈtam(brᵊ)\:
+        </h2>
+          <h3 className="text-center">
+            the quality given to a sound by its overtones: such as<br />
+            a : the resonance by which the ear recognizes and identifies a voiced speech sound<br />
+            b : the quality of tone distinctive of a particular singing voice or musical instrument
+        </h3>
+          <Row>
+            <Button size="lg" variant="success" className="m-auto text-center" onClick={this.handleToDashBoard}>🎶</Button>
+            {
+              this.renderRedirect()
+            }
+          </Row>
           <Switch
           >
           </Switch>
