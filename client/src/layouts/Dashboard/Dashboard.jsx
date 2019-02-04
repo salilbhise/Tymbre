@@ -62,7 +62,7 @@ class Dashboard extends Component {
         landingPage: false,
         redirect: true
       })
-    }, 5000)
+    }, 30000)
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     var color = Math.floor(Math.random() * 4 + 1);
@@ -130,7 +130,12 @@ class Dashboard extends Component {
     return (this.state.landingPage === true) ?
       (
         <Container fluid className="landingContainer text-white">
-          This is the tymbre landing page
+          tym·​bre | \ ˈtam-bər  , ˈtim-; ˈtam(brᵊ)\
+          : the quality given to a sound by its overtones: such as
+a : the resonance by which the ear recognizes and identifies a voiced speech sound
+b : the quality of tone distinctive of a particular singing voice or musical instrument
+
+      
         <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
         {
          this.renderRedirect()
