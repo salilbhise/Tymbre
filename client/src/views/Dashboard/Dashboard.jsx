@@ -379,9 +379,9 @@ class Dashboard extends Component {
                   <div className="m-0">
                     <h1 className="my-3 tierText text-center">
                       Tier <br />
-                      <img src={this.state.tierImages[this.state.tymbreRating - 1]}>
+                      <Image roundedCircle className="tierImage" src={this.state.tierImages[this.state.tymbreRating - 1]}>
 
-                      </img>
+                      </Image>
                     </h1>
                     <p>
                       {tymbreRating.ratingDescription[this.state.tymbreRating - 1]}
