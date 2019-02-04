@@ -1,24 +1,18 @@
 import React, { Component } from "react";
-// import Image from 'react-bootstrap/Image';
 import ChartistGraph from "react-chartist";
 import { Container, Row, Col, Button, Modal, Image, } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
 import { Tasks } from "../../components/Tasks/Tasks.jsx";
 import {
-  //dataPie,
-  //legendPie,
-  dataSales,
   optionsSales,
   responsiveSales,
-  legendSales,
-  dataBar,
+  tymbreRating,
   optionsBar,
   responsiveBar,
   legendBar
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
-//import { timingSafeEqual } from "crypto";
 import helpers from "../../utils/helpers.js";
 class Dashboard extends Component {
   state = {
@@ -48,7 +42,8 @@ class Dashboard extends Component {
       tempState.data.spotifyFollowers = res.data.followers.total;
       tempState.imageLink = res.data.images[0].url;
       this.setState({
-        artistData: tempState
+        artistData: tempState,
+        spotifyLink: res.data.external_urls.spotify
       });
       return API.lastFMSearch(artist)
         .then(res => {
@@ -59,7 +54,8 @@ class Dashboard extends Component {
           tempState.totalFollowersAndListeners = parseInt(this.state.artistData.data.spotifyFollowers) + parseInt(this.state.artistData.data.lastFMListeners);
           tempState.data.estimatedRevenue = (parseInt(tempState.data.lastFMListeners) * 0.00275) + (parseInt(tempState.data.spotifyFollowers) * 0.0084);
           this.setState({
-            artistData: tempState
+            artistData: tempState,
+            lastFMLink: res.data.artist.bio.links.link.href
           });
           return API.iTunesTrackInformationSearch(artist).then(res => {
             console.log("Track Data: ", res.data);
@@ -75,7 +71,7 @@ class Dashboard extends Component {
               } else {
                 const id = helpers.artistSearch(res.data, this.state.artistData.name);
                 API.getArtist(id).then(res => {
-                  console.log("chart search data: ", res.data.data);
+                  //console.log("chart search data: ", res.data.data);
                   const dataArray = res.data.data;
                   let tempGraph = {
                     labels: [],
@@ -84,12 +80,34 @@ class Dashboard extends Component {
                     ]
                   }
                   let timeArray = [];
+                  let labels = [
+                    "Listeners/Followers",
+                    "Hours Listened",
+                    "Streaming Royalties"
+                  ]
+                  let barArray = [
+                    [],
+                    []
+                  ];
+                  barArray[0].push(
+                    dataArray[dataArray.length - 1].lastFMListeners,
+                    parseInt((helpers.msToTime(dataArray[dataArray.length - 1].lastFMListeners * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0)).toFixed(0))),
+                    parseInt((dataArray[dataArray.length - 1].lastFMListeners * 0.00275).toFixed(2))
+                  );
+                  barArray[1].push(
+                    dataArray[dataArray.length - 1].spotifyFollowers,
+                    parseInt((helpers.msToTime(dataArray[dataArray.length - 1].spotifyFollowers * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0)).toFixed(0))),
+                    parseInt((dataArray[dataArray.length - 1].spotifyFollowers * 0.0084).toFixed(2))
+                  )
                   dataArray.forEach(e => {
                     const date = new Date(e.date);
+
                     timeArray.push(e.date);
                     tempGraph.labels.push(`${date.getMonth()}/${date.getDate()}`);
                     tempGraph.series[0].push(e.spotifyFollowers + e.lastFMListeners);
                   });
+                  console.log("barARray: ", barArray);
+                  console.log(dataArray);
                   let tempMin = Math.min(...tempGraph.series[0]);
                   let tempMax = Math.max(...tempGraph.series[0]);
                   let tempOptions = {
@@ -97,13 +115,22 @@ class Dashboard extends Component {
                     low: tempMin,
                     high: tempMax
                   }
-                  console.log(helpers.timeSince(Math.min(...timeArray)));
-                  console.log(helpers.timeSince(Math.max(...timeArray)));
+                  console.log(dataArray[dataArray.length - 1].date);
+                  console.log(dataArray[0].date);
+                  console.log(helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date));
+                  console.log(helpers.determineTymbreRating(dataArray[0].date, dataArray[dataArray.length - 1].date, helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)));
                   this.setState({
+                    tymbreRating: helpers.determineTymbreRating(dataArray[0].date, dataArray[dataArray.length - 1].date, helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)),
                     graphData: tempGraph,
                     graphOptions: tempOptions,
                     lastUpdated: (helpers.timeSince(Math.max(...timeArray))),
-                    createdAt: (helpers.timeSince(Math.min(...timeArray)))
+                    createdAt: (helpers.timeSince(Math.min(...timeArray))),
+                    spotifyFollowersChangeSinceLastUpdate: this.state.artistData.data.spotifyFollowers - dataArray[dataArray.length - 1].spotifyFollowers,
+                    lastFMListenersChangeSinceLastUpdate: this.state.artistData.data.lastFMListeners - dataArray[dataArray.length - 1].lastFMListeners,
+                    barGraphData: {
+                      labels: labels,
+                      series: barArray
+                    }
                   });
                 })
               }
@@ -203,22 +230,32 @@ class Dashboard extends Component {
         <Container fluid>
           <Row>
             <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-music text-danger" />}
-                statsText="Last FM Listeners"
-                statsValue={(helpers.abbreviateNumber(this.state.artistData.data.lastFMListeners))}
-                statsIcon={<i className="fa fa-refresh" />}
-                statsIconText={this.state.lastUpdated + " ago"}
-              />
+              <div onClick={() => {
+                window.open(this.state.lastFMLink);
+              }}
+              >
+                <StatsCard
+                  bigIcon={<i className="pe-7s-music text-danger" />}
+                  statsText="Last FM Listeners"
+                  statsValue={(helpers.abbreviateNumber(this.state.artistData.data.lastFMListeners))}
+                  statsIcon={<i className="fa fa-refresh" />}
+                  statsIconText={this.state.lastUpdated + " ago " + helpers.gainOrLoss(this.state.lastFMListenersChangeSinceLastUpdate)}
+                />
+              </div>
             </Col>
             <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-users text-success" />}
-                statsText="Spotify Followers"
-                statsValue={helpers.abbreviateNumber(this.state.artistData.data.spotifyFollowers)}
-                statsIcon={<i className="fa fa-calendar-o" />}
-                statsIconText={this.state.lastUpdated + " ago"}
-              />
+              <div onClick={() => {
+                window.open(this.state.spotifyLink);
+              }}
+              >
+                <StatsCard
+                  bigIcon={<i className="pe-7s-users text-success" />}
+                  statsText="Spotify Followers"
+                  statsValue={helpers.abbreviateNumber(this.state.artistData.data.spotifyFollowers)}
+                  statsIcon={<i className="fa fa-calendar-o" />}
+                  statsIconText={this.state.lastUpdated + " ago " + helpers.gainOrLoss(this.state.spotifyFollowersChangeSinceLastUpdate)}
+                />
+              </div>
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
@@ -278,8 +315,8 @@ class Dashboard extends Component {
                     </Row>
                     <Row>
                       <button type="button" className="my-4 mx-1 btn btn-primary" >Follow</button>
-                      <Button className="my-4 mx-1" variant="outline-success" onClick={this.handlePlayUpdateButtonClick}>Update</Button>
-                      <Button className="my-4 mx-1" variant="secondary" onClick={this.handleModalShow}>Bio</Button>
+                      <button type="button" className="my-4 mx-1 btn btn-secondary" onClick={this.handlePlayUpdateButtonClick}>Update</button>
+                      <button type="button" className="my-4 mx-1 btn bnt-danger" onClick={this.handleModalShow}>Bio</button>
                     </Row>
                   </Container>
                 }
@@ -303,14 +340,14 @@ class Dashboard extends Component {
             <Col md={6}>
               <Card
                 id="chartActivity"
-                title="2014 Sales"
-                category="All products including Taxes"
-                stats="Data information certified"
+                title="Last.FM and Spotify Comparison"
+                category="Current Data"
+                stats={`Data information certified * ${this.state.lastUpdated} ago`}
                 statsIcon="fa fa-check"
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
-                      data={dataBar}
+                      data={this.state.barGraphData}
                       type="Bar"
                       options={optionsBar}
                       responsiveOptions={responsiveBar}
@@ -324,15 +361,18 @@ class Dashboard extends Component {
             </Col>
             <Col md={6}>
               <Card
-                title="Tasks"
-                category="Backend development"
-                stats="Updated 3 minutes ago"
-                statsIcon="fa fa-history"
+                title="Tymbre Rating"
+                category="In House Rating"
+                //stats="Updated 3 minutes ago"
+                //statsIcon="fa fa-history"
                 content={
-                  <div className="table-full-width">
-                    <table className="table">
-                      <Tasks />
-                    </table>
+                  <div className="m-0">
+                    <h1 className="my-3 text-center">
+                      Tier {this.state.tymbreRating}
+                    </h1>
+                    <p>
+                      {tymbreRating.ratingDescription[this.state.tymbreRating - 1]}
+                    </p>
                   </div>
                 }
               />

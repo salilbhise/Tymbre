@@ -3068,3 +3068,11 @@ body,
 
 .artistPicture {
   border: 5px solid bisque; }
+
+.ct-series-a .ct-bar {
+  stroke: #d9534f;
+  stroke-width: 35px; }
+
+.ct-series-b .ct-bar {
+  stroke: #5cb85c;
+  stroke-width: 35px; }

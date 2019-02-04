@@ -41,5 +41,26 @@ export default {
     return interval + " Minutes";
   }
   return Math.floor(seconds) + " Seconds";
+  },
+  gainOrLoss: num => {
+    if (num === 0) {
+      return "(No Change)";
+    } else if (num < 0) {
+          return (`(-${num})`);
+    } else {
+      return (`(+${num})`);
+    }
+  },
+  determineTymbreRating: (num1, num2, hours) => {
+    const delta = num2 - num1;
+    const days = hours/24;
+    const growth = delta/days;
+    if (num1 < 1000000 && num2 + (growth * 365) < 999999) {
+      return 3;
+    } else if(num1 < 1000000 && num2 + (growth * 365) > 999999) {
+      return 2; 
+    } else {
+      return 1;
+    }
   }
 }
