@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
-
+import { Container, Button } from "react-bootstrap";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -18,7 +18,8 @@ class Dashboard extends Component {
     this.state = {
       _notificationSystem: null,
       artists: [],
-      data1: ""
+      data1: "",
+      landingPage: true
     };
   }
   handleNotificationClick(position) {
@@ -53,6 +54,7 @@ class Dashboard extends Component {
     });
   }
   componentDidMount() {
+    console.log("Landing Page Trigger: ", this.state.landingPage);
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     var color = Math.floor(Math.random() * 4 + 1);
@@ -73,16 +75,22 @@ class Dashboard extends Component {
       default:
         break;
     }
-    _notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-graph1" />,
-      message: (
-        <div>
-          Welcome to <b>Tymbre</b>! A Big-Data Music Analytics App.
-      </div>
-      ),
-      level: level,
-      position: "tr",
-      autoDismiss: 15
+    // _notificationSystem.addNotification({
+    //   title: <span data-notify="icon" className="pe-7s-graph1" />,
+    //   message: (
+    //     <div>
+    //       Welcome to <b>Tymbre</b>! A Big-Data Music Analytics App.
+    //   </div>
+    //   ),
+    //   level: level,
+    //   position: "tr",
+    //   autoDismiss: 15
+    // });
+  }
+  handleToDashBoard = event => {
+    event.preventDefault();
+    this.setState({
+      landingPage: false
     });
   }
   componentDidUpdate(e) {
@@ -105,51 +113,47 @@ class Dashboard extends Component {
     })
   }
   render() {
-    return (
-      <div className="wrapper">
-        <NotificationSystem ref="notificationSystem" style={style} />
-        <Sidebar {...this.props} />
-        <div id="main-panel" className="main-panel" ref="mainPanel">
-          <Header {...this.props} data={this.state.headerData} recieveDataFromHeader={this.recieveDataFromHeader} />
+    return (this.state.landingPage === true) ?
+      (
+        <Container className="landingContainer text-white">
+          This is the tymbre landing page
+        <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
           <Switch
           >
-            {dashboardRoutes.map((prop, key) => {
-              // if (prop.name === "Notifications")
-              //   return (
-              //     <Route
-              //       path={prop.path}
-              //       key={key}
-              //       render={routeProps => (
-              //         <prop.component
-              //           {...routeProps}
-              //           headerData={this.state.data1}
-              //         />
-              //       )}
-              //     />
-              //   );
-              if (prop.redirect)
-                return <Redirect
-                  from={prop.path} to={prop.to} render={routeProps => (
-                    <prop.component
-                      {...routeProps}
-                      headerData={this.state.data1}
-                    />
-                  )} key={key} />;
-              return (
-                <Route
-                  path={prop.path} render={routeProps => (
-                    <prop.component
-                      {...routeProps}
-                      headerData={this.state.data1}
-                    />
-                  )} key={key} />
-              );
-            })}
           </Switch>
-          <Footer />
+        </Container>
+      ) : (
+        <div className="wrapper">
+          <NotificationSystem ref="notificationSystem" style={style} />
+          <Sidebar {...this.props} />
+          <div id="main-panel" className="main-panel" ref="mainPanel">
+            <Header {...this.props} data={this.state.headerData} recieveDataFromHeader={this.recieveDataFromHeader} />
+            <Switch
+            >
+              {dashboardRoutes.map((prop, key) => {
+                if (prop.redirect)
+                  return <Redirect
+                    from={prop.path} to={prop.to} render={routeProps => (
+                      <prop.component
+                        {...routeProps}
+                        headerData={this.state.data1}
+                      />
+                    )} key={key} />;
+                return (
+                  <Route
+                    path={prop.path} render={routeProps => (
+                      <prop.component
+                        {...routeProps}
+                        headerData={this.state.data1}
+                      />
+                    )} key={key} />
+                );
+              })}
+            </Switch>
+            <Footer />
+          </div>
         </div>
-      </div>
-    );
+      )
   }
 }
 
