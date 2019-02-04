@@ -4,7 +4,7 @@ import { Card } from "../../components/Card/Card.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 import avatar from "../../assets/img/faces/salface.png";
- const image = "https://gl-images.condecdn.net/image/DLl1XeQ691J/crop/200/square/f/mark-zuckerberg_glamour_26jan16_pa_b.jpg"
+const image = "https://gl-images.condecdn.net/image/DLl1XeQ691J/crop/200/square/f/mark-zuckerberg_glamour_26jan16_pa_b.jpg"
 
 function About() {
   return (<div className="content">
@@ -18,11 +18,13 @@ function About() {
             userName="aale12"
             description={
               <span>
-                "Lamborghini Mercy
+                "She's in love with who I am
                     <br />
-                Your chick she so thirsty
+                Back in high school, I used to bus it to the dance
                     <br />
-                I'm in that two seat Lambo"
+                Now I hit the FBO with duffels in my hands"
+                    <br />
+                - Drake
                   </span>
             }
             socials={
@@ -48,11 +50,13 @@ function About() {
             userName="newamsterdamn"
             description={
               <span>
-                "Lamborghini Mercy
+                "Yeek yeek woop woop! why you all in my ear?!
                     <br />
-                Your chick she so thirsty
+                Talking a whole bunch of shit
                     <br />
-                I'm in that two seat Lambo"
+                That I ain't trying to hear!"
+                <br />
+                - Ludacris
                   </span>
             }
             socials={
