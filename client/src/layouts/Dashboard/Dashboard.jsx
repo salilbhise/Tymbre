@@ -57,12 +57,12 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log("Landing Page Trigger: ", this.state.landingPage);
     const self = this;
-    setTimeout(function(){
-      self.setState({
-        landingPage: false,
-        redirect: true
-      })
-    }, 30000)
+    // setTimeout(function () {
+    //   self.setState({
+    //     landingPage: false,
+    //     redirect: true
+    //   })
+    // }, 30000)
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     var color = Math.floor(Math.random() * 4 + 1);
@@ -120,26 +120,31 @@ class Dashboard extends Component {
       console.log("data1 from Header", headerData);
     })
   }
-  renderRedirect = () =>{
-    if(this.state.redirect == true){
-      return <Redirect to="/dashboard"/>
+  renderRedirect = () => {
+    if (this.state.redirect == true) {
+      return <Redirect to="/dashboard" />
     }
   }
-  
+
   render() {
     return (this.state.landingPage === true) ?
       (
-        <Container fluid className="landingContainer text-white">
-          tym·​bre | \ ˈtam-bər  , ˈtim-; ˈtam(brᵊ)\
-          : the quality given to a sound by its overtones: such as
-a : the resonance by which the ear recognizes and identifies a voiced speech sound
-b : the quality of tone distinctive of a particular singing voice or musical instrument
-
-      
-        <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
-        {
-         this.renderRedirect()
-        }
+        <Container className="landingContainer text-white">
+          <h1 className="titleContainer text-center">
+            Tymbre
+        </h1>
+          <h2 className="text-center">
+            from timbre - tym·​bre | \ ˈtam-bər  , ˈtim-; ˈtam(brᵊ)\:
+        </h2>
+          <h3 className="text-center">
+            the quality given to a sound by its overtones: such as<br />
+            a : the resonance by which the ear recognizes and identifies a voiced speech sound<br />
+            b : the quality of tone distinctive of a particular singing voice or musical instrument
+        </h3>
+          <Button variant="primary" onClick={this.handleToDashBoard}>click me</Button>
+          {
+            this.renderRedirect()
+          }
           <Switch
           >
           </Switch>

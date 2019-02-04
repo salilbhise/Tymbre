@@ -3076,3 +3076,9 @@ body,
 .ct-series-b .ct-bar {
   stroke: #5cb85c;
   stroke-width: 35px; }
+
+.landingContainer, .titleContainer {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; }
+
+.titleContainer {
+  font-size: 120px; }
