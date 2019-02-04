@@ -84,7 +84,6 @@ export default class Header extends Component {
         <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         <Navbar.Collapse>
           <Nav className="mr-auto justify-content-end text-white">
-            <Nav.Link href="#" className="text-white">Account</Nav.Link>
             <Nav.Link href="#" className="text-white">Log Out</Nav.Link>
           </Nav>
           <Form onChange={this.handleInputChange} inline className="my-auto">

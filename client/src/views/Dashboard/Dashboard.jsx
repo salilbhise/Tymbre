@@ -205,7 +205,7 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-music text-danger" />}
-                statsText="Listeners"
+                statsText="Last FM Listeners"
                 statsValue={(helpers.abbreviateNumber(this.state.artistData.data.lastFMListeners))}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText={this.state.lastUpdated + " ago"}
@@ -214,7 +214,7 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-users text-success" />}
-                statsText="Followers"
+                statsText="Spotify Followers"
                 statsValue={helpers.abbreviateNumber(this.state.artistData.data.spotifyFollowers)}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText={this.state.lastUpdated + " ago"}
@@ -223,7 +223,7 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-global text-primary" />}
-                statsText={"Hours Listened *"}
+                statsText={"Hours Listened"}
                 statsValue={helpers.abbreviateNumber(this.state.artistData.data.hoursListened)}
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText={this.state.lastUpdated + " ago"}
@@ -231,11 +231,16 @@ class Dashboard extends Component {
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
-                bigIcon={<i className="fa fa-twitter text-info" />}
-                statsText="Est. Streaming Royalties*"
+                bigIcon={<i className="fa fa-money text-success" />}
+                statsText="Streaming Royalties"
                 statsValue={"$" + helpers.abbreviateNumber(this.state.artistData.data.estimatedRevenue)}
+<<<<<<< HEAD
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText={this.state.lastUpdated + " ago"}
+=======
+                statsIcon={<i className="fa fa-asterisk" />}
+                statsIconText="Monthly Estimate"
+>>>>>>> master
               />
             </Col>
           </Row>
