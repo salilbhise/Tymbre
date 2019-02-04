@@ -57,7 +57,7 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log("Landing Page Trigger: ", this.state.landingPage);
     const self = this;
-    // setTimeout(function () {
+    // setTimeout(function(){
     //   self.setState({
     //     landingPage: false,
     //     redirect: true

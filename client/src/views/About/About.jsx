@@ -4,7 +4,7 @@ import { Card } from "../../components/Card/Card.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 import avatar from "../../assets/img/faces/salface.png";
-const image = "https://gl-images.condecdn.net/image/DLl1XeQ691J/crop/200/square/f/mark-zuckerberg_glamour_26jan16_pa_b.jpg"
+const image = "http://i66.tinypic.com/2q8u15y.jpg"
 
 function About() {
   return (<div className="content">
