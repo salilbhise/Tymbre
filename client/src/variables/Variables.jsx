@@ -3,6 +3,18 @@
 // // // For notifications
 // //
 //
+const tymbreRating = {
+  rating: [
+    1,
+    2,
+    3
+  ],
+  ratingDescription: [
+    "Tier 1 Artists are prolific in the industry and have followers and listeners in excess of one million.  They consist of artists that are well known outside of their local area.",
+    "Tier 2 artists are just as relevant as Tier 1 artists, but are limited to their local area.  They are characterized by quick growth, and many expect to surpass the one million follower and listener mark within the next year.",
+    "Tier 3 artists are new and upcoming.  They show enough talent to be recognized by Spotify and Last.FM, but are not yet well known in their local area."
+  ]
+}
 const defaultWidth =
   window.screen.width > 768 ? window.screen.width * 1 / 3 : window.screen.width;
 
@@ -503,10 +515,10 @@ const dataSales = {
 const optionsSales = {
   low: 0,
   high: 800,
-  showArea: false,
+  showArea: true,
   height: "230px",
   axisX: {
-    showGrid: false
+    showGrid: true
   },
   lineSmooth: true,
   showLine: true,
@@ -557,11 +569,16 @@ const dataBar = {
   ]
 };
 const optionsBar = {
-  seriesBarDistance: 10,
+  seriesBarDistance: 50,
   axisX: {
     showGrid: false
   },
-  height: "245px"
+  height: "245px",
+  chartPadding: {
+    right: 50,
+    left: 65,
+    top: 25
+  }
 };
 const responsiveBar = [
   [
@@ -577,8 +594,8 @@ const responsiveBar = [
   ]
 ];
 const legendBar = {
-  names: ["Tesla Model S", "BMW 5 Series"],
-  types: ["info", "danger"]
+  names: ["Last.FM", "Spotify"],
+  types: ["danger", "success"]
 };
 
 module.exports = {
@@ -595,5 +612,6 @@ module.exports = {
   dataBar,
   optionsBar,
   responsiveBar,
+  tymbreRating,
   legendBar // For charts (Dashboard view)
 };
