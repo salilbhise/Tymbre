@@ -27,7 +27,7 @@ class Dashboard extends Component {
     searchBarText: "",
     artist: "Michael Jackson",
     artistData: {
-      name: "",
+      name: "Michael Jackson",
       genre: "",
       about: "",
       totalFollowersAndListeners: 0,
@@ -43,9 +43,11 @@ class Dashboard extends Component {
     bioModalShow: false
   }
   renderArtistDataOnPage = artist => {
+    console.log(artist);
     API.spotifySearch(artist).then(res => {
       console.log("Spotify Data: ", res.data);
       const tempState = this.state.artistData;
+      tempState.name = res.data.name;
       tempState.data.spotifyFollowers = res.data.followers.total;
       tempState.imageLink = res.data.images[0].url;
       this.setState({
@@ -72,7 +74,9 @@ class Dashboard extends Component {
             this.setState({
               artistData: tempState
             });
-            API.getArtists().then(res => {
+            return API.getArtists().then(res => {
+              console.log("77: ", res.data);
+              console.log("78: ", this.state.artistData);
               if (helpers.artistSearch(res.data, this.state.artistData.name) === false) {
                 console.log("Artist Not in DB");
               } else {
@@ -164,6 +168,7 @@ class Dashboard extends Component {
       console.log(this.state.artistData.name);
       console.log((helpers.artistSearch(res.data, this.state.artistData.name)));
     });
+    console.log("willMount: ", this.state.artist);
     this.renderArtistDataOnPage(this.state.artist);
   }
   componentDidMount() {
@@ -175,6 +180,7 @@ class Dashboard extends Component {
   }
   componentDidUpdate(prevProps) {
     if (this.props.headerData.name !== prevProps.headerData.name) {
+      console.log("didUpdate: ", this.props.headerData.name);
       this.renderArtistDataOnPage(this.props.headerData.name);
     }
   }
@@ -190,6 +196,8 @@ class Dashboard extends Component {
   handlePlayUpdateButtonClick = event => {
     event.preventDefault();
     API.getArtists().then(res => {
+      console.log("resDataButton ", res.data);
+      console.log("hello", this.state.artistData.name.toString());
       console.log((helpers.artistSearch(res.data, this.state.artistData.name)));
       if (helpers.artistSearch(res.data, this.state.artistData.name) === false) {
         API.saveArtist({
@@ -208,6 +216,7 @@ class Dashboard extends Component {
             }
           ]
         }).then(res => {
+          console.log("219: ", this.props.headerData.name);
           this.renderArtistDataOnPage(this.props.headerData.name);
         })
       } else {
@@ -219,7 +228,9 @@ class Dashboard extends Component {
           estimatedRevenue: this.state.artistData.data.estimatedRevenue,
           hoursListened: this.state.artistData.data.hoursListened
         }).then(res => {
-          this.renderArtistDataOnPage(this.props.headerData.name);
+          console.log("229", this.state.artistData);
+          console.log("230: ", this.props.headerData.name);
+          this.renderArtistDataOnPage(this.state.artistData.name);
         })
       }
     });
