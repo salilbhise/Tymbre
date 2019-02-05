@@ -577,7 +577,8 @@ const optionsBar = {
   chartPadding: {
     right: 50,
     left: 65,
-    top: 25
+    top: 25,
+    bottom: 25
   }
 };
 const responsiveBar = [
