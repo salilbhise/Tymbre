@@ -3,7 +3,9 @@ import ChartistGraph from "react-chartist";
 import { Container, Row, Col, Button, Modal, Image, } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
-import { Tasks } from "../../components/Tasks/Tasks.jsx";
+import tier1Image from "../../assets/img/one.png";
+import tier2Image from "../../assets/img/two.png";
+import tier3Image from "../../assets/img/three.png";
 import {
   optionsSales,
   responsiveSales,
@@ -16,6 +18,11 @@ import API from "../../utils/API.js";
 import helpers from "../../utils/helpers.js";
 class Dashboard extends Component {
   state = {
+    tierImages: [
+      tier1Image,
+      tier2Image,
+      tier3Image
+    ],
     userIsLoggedIn: false,
     searchBarText: "",
     artist: "Michael Jackson",
@@ -370,8 +377,11 @@ class Dashboard extends Component {
                 //statsIcon="fa fa-history"
                 content={
                   <div className="m-0">
-                    <h1 className="my-3 text-center">
-                      Tier {this.state.tymbreRating}
+                    <h1 className="my-3 tierText text-center">
+                      Tier <br />
+                      <Image roundedCircle className="tierImage" src={this.state.tierImages[this.state.tymbreRating - 1]}>
+
+                      </Image>
                     </h1>
                     <p>
                       {tymbreRating.ratingDescription[this.state.tymbreRating - 1]}

@@ -3082,3 +3082,10 @@ body,
 
 .titleContainer {
   font-size: 120px; }
+
+.tierText {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 90px; }
+
+.tierImage {
+  border: 5px solid blueviolet; }
