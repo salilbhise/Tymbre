@@ -9,9 +9,9 @@ class Icons extends Component {
   render() {
     return (
       <div className="content">
-        <Container fluid>
+        <Container>
           <Row>
-            <Col md={8} mdOffset={2}>
+            <Col>
               <Card
                 hCenter
                 title="Questions x Comments x Collabs"
@@ -38,7 +38,7 @@ class Icons extends Component {
                         <td />
                         <td>
                         </td>
-                        <td>
+                        <td className="text-center">
                           <Button
                             target="_blank"
                             href="mailto:tymbreapp@gmail.com"

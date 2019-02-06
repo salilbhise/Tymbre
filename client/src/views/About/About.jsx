@@ -12,6 +12,7 @@ function About() {
       <Row>
         <Col md={6}>
           <UserCard
+            href="https://github.com/aale12"
             bgImage="https://image.freepik.com/free-photo/white-brick-wall-background_1203-2759.jpg"
             avatar={image}
             name="Anthony Le"
@@ -44,6 +45,7 @@ function About() {
         </Col>
         <Col md={6}>
           <UserCard
+            href="https://github.com/salilbhise"
             bgImage="https://image.freepik.com/free-photo/white-brick-wall-background_1203-2759.jpg"
             avatar={avatar}
             name="Salil Bhise"

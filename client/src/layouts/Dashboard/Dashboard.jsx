@@ -121,7 +121,7 @@ class Dashboard extends Component {
     })
   }
   renderRedirect = () => {
-    if (this.state.redirect == true) {
+    if (this.state.redirect === true) {
       return <Redirect to="/dashboard" />
     }
   }
