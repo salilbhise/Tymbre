@@ -312,7 +312,7 @@ class Dashboard extends Component {
                       <div className="ct-chart">
                         <ResponsiveContainer>
                           <AreaChart data={this.state.rechartsGraphData}
-                            margin={{ top: 0, right: 30, left: 30, bottom: 5 }}>
+                            margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="time" tickFormatter={d3.timeFormat('%m/%d %H:%M')} />
                             <YAxis dataKey="Followers/Listeners" domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
@@ -382,7 +382,7 @@ class Dashboard extends Component {
                       <div className="ct-chart">
                         <ResponsiveContainer>
                           <BarChart data={this.state.rechartsBarGraphData}
-                            margin={{ top: 0, right: 30, left: 90, bottom: 5 }}>
+                            margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
                             <YAxis domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
