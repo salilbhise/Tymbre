@@ -1,17 +1,19 @@
-import React, { Component } from "react";
-import { Table, Container, Row, Col } from "react-bootstrap";
+import React, { Component } from 'react';
+import {
+  Table, Container, Row, Col,
+} from 'react-bootstrap';
 
-import Card from "../../components/Card/Card";
+import Card from '../../components/Card/Card';
 
-import Button from "../../components/CustomButton/CustomButton";
+import Button from '../../components/CustomButton/CustomButton';
 
 class Icons extends Component {
   render() {
     return (
       <div className="content">
-        <Container fluid>
+        <Container>
           <Row>
-            <Col md={8} mdOffset={2}>
+            <Col>
               <Card
                 hCenter
                 title="Questions x Comments x Collabs"
@@ -19,7 +21,7 @@ class Icons extends Component {
                 ctTableResponsive
                 ctTableFullWidth
                 ctTableUpgrade
-                content={
+                content={(
                   <Table>
                     <thead>
                       <tr>
@@ -36,9 +38,8 @@ class Icons extends Component {
                       </tr>
                       <tr>
                         <td />
-                        <td>
-                        </td>
-                        <td>
+                        <td />
+                        <td className="text-center">
                           <Button
                             target="_blank"
                             href="mailto:tymbreapp@gmail.com"
@@ -52,7 +53,7 @@ class Icons extends Component {
                       </tr>
                     </tbody>
                   </Table>
-                }
+                )}
               />
             </Col>
           </Row>
