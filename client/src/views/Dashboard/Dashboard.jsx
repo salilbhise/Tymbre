@@ -9,7 +9,6 @@ import tier2Image from "../../assets/img/two.png";
 import tier3Image from "../../assets/img/three.png";
 import {
   tymbreRating,
-  legendBar
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
 import helpers from "../../utils/helpers.js";
@@ -38,29 +37,6 @@ class Dashboard extends Component {
     },
     headerData: this.props.headerData,
     bioModalShow: false
-  }
-  showTooltipData = (data) => {
-    if (typeof data.payload[0] !== 'undefined') {
-      // console.log(Object.keys(data.payload[0]));
-      // console.log("fill = " + data.payload[0]["fill"]);
-      // console.log("dataKey = " + data.payload[0]["dataKey"]);
-      // console.log("unit = " + data.payload[0]["unit"]);
-      // console.log("formatter = " + data.payload[0]["formatter"]);
-      // console.log("name = " + data.payload[0]["name"]);
-      // console.log("color = " + data.payload[0]["color"]);
-      // console.log("value = " + data.payload[0]["value"]);
-      // console.log("payload = " + data.payload[0]["payload"].name);
-      // console.log("self = " + JSON.stringify(data.payload[1], null, 2));
-      if (data.payload[0]["payload"].name === "Streaming Royalties") {
-        return (
-          function (d) {
-            return "$" + d3.format(",.2f")(d);
-          }
-        )
-      } else {
-        return (d3.format(".4s"));
-      }
-    }
   }
   renderArtistDataOnPage = artist => {
     console.log(artist);
@@ -98,7 +74,6 @@ class Dashboard extends Component {
               console.log("77: ", res.data);
               console.log("78: ", this.state.artistData);
               if (helpers.artistSearch(res.data, this.state.artistData.name) === false) {
-                console.log("Artist Not in DB");
                 this.setState({
                   artistInDB: false
                 })
@@ -108,7 +83,6 @@ class Dashboard extends Component {
                 })
                 const id = helpers.artistSearch(res.data, this.state.artistData.name);
                 API.getArtist(id).then(res => {
-                  //console.log("chart search data: ", res.data.data);
                   const dataArray = res.data.data;
                   console.log(dataArray.length);
                   if (dataArray.length === 1) {
@@ -184,13 +158,6 @@ class Dashboard extends Component {
     });
     console.log("willMount: ", this.state.artist);
     this.renderArtistDataOnPage(this.state.artist);
-  }
-  componentDidMount() {
-    // API.iTunesTrackInformationSearch(this.state.artist).then(res => {
-    //   console.log("Track Info iTunes: ", res.data);
-    // })
-    // console.log(this.state.artistData);
-    // console.log(dataBar);
   }
   componentDidUpdate(prevProps) {
     if (this.props.headerData.name !== prevProps.headerData.name) {
@@ -356,16 +323,12 @@ class Dashboard extends Component {
                       </div>
                     )
                 }
-              // legend={
-              //   <div className="legend">{this.createLegend(legendSales)}</div>
-              // }
               />
             </Col>
             <Col md={4}>
               <Card
                 title={this.state.artistData.name}
                 category={this.state.artistData.genre}
-                //stats="Campaign sent 2 days ago"
                 content={
                   <Container>
                     <Row>
@@ -438,8 +401,6 @@ class Dashboard extends Component {
               <Card
                 title="Tymbre Rating"
                 category="In House Rating"
-                //stats="Updated 3 minutes ago"
-                //statsIcon="fa fa-history"
                 content={
                   this.state.artistInDB === false ? (
                     <h2></h2>
