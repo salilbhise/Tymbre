@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import React, { Component } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, Legend } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, Legend, ResponsiveContainer } from "recharts";
 import { Container, Row, Col, Button, Modal, Image, } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
@@ -343,21 +343,16 @@ class Dashboard extends Component {
                     <h2 className="text-center">Insufficient Data: Try updating the Artist a few times with the Update Button!</h2>
                   ) : (
                       <div className="ct-chart">
-                        <AreaChart width={1000} height={275} data={this.state.rechartsGraphData}
-                          margin={{ top: 0, right: 30, left: 30, bottom: 5 }}>
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="time" tickFormatter={d3.timeFormat('%m/%d %H:%M')} />
-                          <YAxis dataKey="Followers/Listeners" domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
-                          <Tooltip />
-                          <Area type='monotone' dataKey='Followers/Listeners' stroke='#8884d8' fill='#8884d8' />
-                        </AreaChart>
-
-                        {/* <ChartistGraph
-                      data={this.state.graphData}
-                      type="Line"
-                      options={this.state.graphOptions}
-                      responsiveOptions={responsiveSales} 
-                    />*/}
+                        <ResponsiveContainer>
+                          <AreaChart data={this.state.rechartsGraphData}
+                            margin={{ top: 0, right: 30, left: 30, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="time" tickFormatter={d3.timeFormat('%m/%d %H:%M')} />
+                            <YAxis dataKey="Followers/Listeners" domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
+                            <Tooltip />
+                            <Area type='monotone' dataKey='Followers/Listeners' stroke='#8884d8' fill='#8884d8' />
+                          </AreaChart>
+                        </ResponsiveContainer>
                       </div>
                     )
                 }
@@ -422,16 +417,18 @@ class Dashboard extends Component {
                     <h2></h2>
                   ) : (
                       <div className="ct-chart">
-                        <BarChart width={1000} height={275} data={this.state.rechartsBarGraphData}
-                          margin={{ top: 0, right: 30, left: 90, bottom: 5 }}>
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="name" />
-                          <YAxis domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
-                          <Tooltip formatter={d3.format(",")} />
-                          <Legend />
-                          <Bar dataKey="Last.FM" fill="#d51007" />
-                          <Bar dataKey="Spotify" fill="#1DB954" />
-                        </BarChart>
+                        <ResponsiveContainer>
+                          <BarChart data={this.state.rechartsBarGraphData}
+                            margin={{ top: 0, right: 30, left: 90, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
+                            <Tooltip formatter={d3.format(",")} />
+                            <Legend />
+                            <Bar dataKey="Last.FM" fill="#d51007" />
+                            <Bar dataKey="Spotify" fill="#1DB954" />
+                          </BarChart>
+                        </ResponsiveContainer>
                       </div>
                     )
                 }
