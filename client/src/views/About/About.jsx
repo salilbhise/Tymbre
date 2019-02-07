@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col, Container } from "react-bootstrap";
-import { Card } from "../../components/Card/Card.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 import avatar from "../../assets/img/faces/salface.png";

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
 
 import Card from "../../components/Card/Card.jsx";
-import { tdArray } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
 
 class TableList extends Component {

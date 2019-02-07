@@ -1,7 +1,6 @@
 import * as d3 from "d3";
 import React, { Component } from "react";
-import ChartistGraph from "react-chartist";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, Legend, ResponsiveContainer } from "recharts";
 import { Container, Row, Col, Button, Modal, Image, } from "react-bootstrap";
 import { Card } from "../../components/Card/Card.jsx";
 import { StatsCard } from "../../components/StatsCard/StatsCard.jsx";
@@ -9,26 +8,12 @@ import tier1Image from "../../assets/img/one.png";
 import tier2Image from "../../assets/img/two.png";
 import tier3Image from "../../assets/img/three.png";
 import {
-  optionsSales,
-  responsiveSales,
   tymbreRating,
-  optionsBar,
-  responsiveBar,
-  legendBar
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
 import helpers from "../../utils/helpers.js";
 class Dashboard extends Component {
   state = {
-    rechartsSampleData: [
-      { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-      { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-      { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-      { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-      { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-      { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-      { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-    ],
     tierImages: [
       tier1Image,
       tier2Image,
@@ -89,7 +74,6 @@ class Dashboard extends Component {
               console.log("77: ", res.data);
               console.log("78: ", this.state.artistData);
               if (helpers.artistSearch(res.data, this.state.artistData.name) === false) {
-                console.log("Artist Not in DB");
                 this.setState({
                   artistInDB: false
                 })
@@ -99,7 +83,6 @@ class Dashboard extends Component {
                 })
                 const id = helpers.artistSearch(res.data, this.state.artistData.name);
                 API.getArtist(id).then(res => {
-                  //console.log("chart search data: ", res.data.data);
                   const dataArray = res.data.data;
                   console.log(dataArray.length);
                   if (dataArray.length === 1) {
@@ -111,73 +94,45 @@ class Dashboard extends Component {
                       artistInDB: true
                     });
                   }
-                  let tempGraph = {
-                    labels: [],
-                    series: [
-                      []
-                    ]
-                  }
                   let tempRechartsData = [];
-                  let timeArray = [];
-                  let labels = [
-                    "Listeners/Followers",
-                    "Hours Listened",
-                    "Streaming Royalties"
-                  ]
-                  let barArray = [
-                    [],
-                    []
-                  ];
-                  barArray[0].push(
-                    dataArray[dataArray.length - 1].lastFMListeners,
-                    parseInt((helpers.msToTime(dataArray[dataArray.length - 1].lastFMListeners * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0)).toFixed(0))),
-                    parseInt((dataArray[dataArray.length - 1].lastFMListeners * 0.00275).toFixed(2))
-                  );
-                  barArray[1].push(
-                    dataArray[dataArray.length - 1].spotifyFollowers,
-                    parseInt((helpers.msToTime(dataArray[dataArray.length - 1].spotifyFollowers * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0)).toFixed(0))),
-                    parseInt((dataArray[dataArray.length - 1].spotifyFollowers * 0.0084).toFixed(2))
+                  let tempRechartsBarData = [];
+                  tempRechartsBarData.push(
+                    {
+                      name: "Follower/Listener Source",
+                      "Last.FM": this.state.artistData.data.lastFMListeners,
+                      "Spotify": this.state.artistData.data.spotifyFollowers
+                    },
+                    {
+                      name: "Hours Listened Source",
+                      "Last.FM": helpers.msToTime(this.state.artistData.data.lastFMListeners * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0)),
+                      "Spotify": helpers.msToTime(this.state.artistData.data.spotifyFollowers * trackArray.reduce((accumulator, currentValue) => accumulator + currentValue.trackTimeMillis, 0))
+                    },
+                    {
+                      name: "Streaming Royalties",
+                      "Last.FM": this.state.artistData.data.lastFMListeners * 0.00275,
+                      "Spotify": this.state.artistData.data.spotifyFollowers * 0.0084
+                    }
                   )
+                  let timeArray = [];
                   dataArray.forEach(e => {
-                    const date = new Date(e.date);
-
                     timeArray.push(e.date);
                     tempRechartsData.push({
                       time: e.date,
                       "Followers/Listeners": e.spotifyFollowers + e.lastFMListeners
                     });
-                    tempGraph.labels.push(`${date.getMonth()}/${date.getDate()}`);
-                    tempGraph.series[0].push(e.spotifyFollowers + e.lastFMListeners);
                   });
-                  console.log("barARray: ", barArray);
-                  console.log(dataArray);
-                  let tempMin = Math.min(...tempGraph.series[0]);
-                  let tempMax = Math.max(...tempGraph.series[0]);
-                  let tempOptions = {
-                    ...optionsSales,
-                    low: tempMin,
-                    high: tempMax
-                  }
-                  console.log(dataArray[dataArray.length - 1].date);
-                  console.log(dataArray[0].date);
-                  console.log(helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date));
-                  console.log(helpers.determineTymbreRating(dataArray[0].date, dataArray[dataArray.length - 1].date, helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)));
+
                   this.setState({
                     tymbreRating: helpers.determineTymbreRating(
                       dataArray[0].spotifyFollowers + dataArray[0].lastFMListeners,
                       dataArray[dataArray.length - 1].spotifyFollowers + dataArray[dataArray.length - 1].lastFMListeners,
                       helpers.msToTime(dataArray[dataArray.length - 1].date - dataArray[0].date)),
-                    graphData: tempGraph,
                     rechartsGraphData: tempRechartsData,
-                    graphOptions: tempOptions,
                     lastUpdated: (helpers.timeSince(Math.max(...timeArray))),
                     createdAt: (helpers.timeSince(Math.min(...timeArray))),
                     spotifyFollowersChangeSinceLastUpdate: this.state.artistData.data.spotifyFollowers - dataArray[dataArray.length - 1].spotifyFollowers,
                     lastFMListenersChangeSinceLastUpdate: this.state.artistData.data.lastFMListeners - dataArray[dataArray.length - 1].lastFMListeners,
-                    barGraphData: {
-                      labels: labels,
-                      series: barArray
-                    }
+                    rechartsBarGraphData: tempRechartsBarData
                   });
                 })
               }
@@ -203,13 +158,6 @@ class Dashboard extends Component {
     });
     console.log("willMount: ", this.state.artist);
     this.renderArtistDataOnPage(this.state.artist);
-  }
-  componentDidMount() {
-    // API.iTunesTrackInformationSearch(this.state.artist).then(res => {
-    //   console.log("Track Info iTunes: ", res.data);
-    // })
-    // console.log(this.state.artistData);
-    // console.log(dataBar);
   }
   componentDidUpdate(prevProps) {
     if (this.props.headerData.name !== prevProps.headerData.name) {
@@ -362,34 +310,25 @@ class Dashboard extends Component {
                     <h2 className="text-center">Insufficient Data: Try updating the Artist a few times with the Update Button!</h2>
                   ) : (
                       <div className="ct-chart">
-                        <AreaChart width={1000} height={275} data={this.state.rechartsGraphData}
-                          margin={{ top: 0, right: 30, left: 30, bottom: 5 }}>
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="time" tickFormatter={d3.timeFormat('%m/%d %H:%M')} />
-                          <YAxis dataKey="Followers/Listeners" domain={["dataMin", "dataMax"]} tickFormatter={helpers.abbreviateNumber()} />
-                          <Tooltip />
-                          <Area type='monotone' dataKey='Followers/Listeners' stroke='#8884d8' fill='#8884d8' />
-                        </AreaChart>
-
-                        {/* <ChartistGraph
-                      data={this.state.graphData}
-                      type="Line"
-                      options={this.state.graphOptions}
-                      responsiveOptions={responsiveSales} 
-                    />*/}
+                        <ResponsiveContainer>
+                          <AreaChart data={this.state.rechartsGraphData}
+                            margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="time" tickFormatter={d3.timeFormat('%m/%d %H:%M')} />
+                            <YAxis dataKey="Followers/Listeners" domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
+                            <Tooltip />
+                            <Area type='monotone' dataKey='Followers/Listeners' stroke='#8884d8' fill='#8884d8' />
+                          </AreaChart>
+                        </ResponsiveContainer>
                       </div>
                     )
                 }
-              // legend={
-              //   <div className="legend">{this.createLegend(legendSales)}</div>
-              // }
               />
             </Col>
             <Col md={4}>
               <Card
                 title={this.state.artistData.name}
                 category={this.state.artistData.genre}
-                //stats="Campaign sent 2 days ago"
                 content={
                   <Container>
                     <Row>
@@ -441,17 +380,20 @@ class Dashboard extends Component {
                     <h2></h2>
                   ) : (
                       <div className="ct-chart">
-                        <ChartistGraph
-                          data={this.state.barGraphData}
-                          type="Bar"
-                          options={optionsBar}
-                          responsiveOptions={responsiveBar}
-                        />
+                        <ResponsiveContainer>
+                          <BarChart data={this.state.rechartsBarGraphData}
+                            margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis domain={["dataMin", "dataMax"]} tickFormatter={d3.format(".4s")} />
+                            <Tooltip formatter={d3.format(",")} />
+                            <Legend />
+                            <Bar dataKey="Last.FM" fill="#d51007" />
+                            <Bar dataKey="Spotify" fill="#1DB954" />
+                          </BarChart>
+                        </ResponsiveContainer>
                       </div>
                     )
-                }
-                legend={
-                  <div className="legend">{this.createLegend(legendBar)}</div>
                 }
               />
             </Col>
@@ -459,8 +401,6 @@ class Dashboard extends Component {
               <Card
                 title="Tymbre Rating"
                 category="In House Rating"
-                //stats="Updated 3 minutes ago"
-                //statsIcon="fa fa-history"
                 content={
                   this.state.artistInDB === false ? (
                     <h2></h2>
