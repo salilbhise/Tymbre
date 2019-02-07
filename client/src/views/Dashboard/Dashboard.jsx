@@ -18,7 +18,6 @@ import {
 } from "../../variables/Variables.jsx";
 import API from "../../utils/API.js";
 import helpers from "../../utils/helpers.js";
-import CustomizedTickAxis from "../../components/CustomizedTickAxis/CustomizedTickAxis.jsx";
 class Dashboard extends Component {
   state = {
     rechartsSampleData: [
@@ -102,6 +101,16 @@ class Dashboard extends Component {
                 API.getArtist(id).then(res => {
                   //console.log("chart search data: ", res.data.data);
                   const dataArray = res.data.data;
+                  console.log(dataArray.length);
+                  if (dataArray.length === 1) {
+                    this.setState({
+                      artistInDB: false
+                    });
+                  } else {
+                    this.setState({
+                      artistInDB: true
+                    });
+                  }
                   let tempGraph = {
                     labels: [],
                     series: [
@@ -350,7 +359,7 @@ class Dashboard extends Component {
                   ) : ("Updated " + this.state.lastUpdated + " ago")}
                 content={
                   this.state.artistInDB === false ? (
-                    <h2>Artist Not In DB: Please Update! </h2>
+                    <h2 className="text-center">Insufficient Data: Try updating the Artist a few times with the Update Button!</h2>
                   ) : (
                       <div className="ct-chart">
                         <AreaChart width={1000} height={275} data={this.state.rechartsGraphData}
@@ -423,7 +432,9 @@ class Dashboard extends Component {
                   this.state.artistInDB === false ? (
                     <h2></h2>
                   ) : (
-                      `Data information certified * ${this.state.lastUpdated} ago`)}
+                      `Data information certified * ${this.state.lastUpdated} ago`
+                    )
+                }
                 statsIcon="fa fa-check"
                 content={
                   this.state.artistInDB === false ? (
@@ -436,7 +447,8 @@ class Dashboard extends Component {
                           options={optionsBar}
                           responsiveOptions={responsiveBar}
                         />
-                      </div>)
+                      </div>
+                    )
                 }
                 legend={
                   <div className="legend">{this.createLegend(legendBar)}</div>
@@ -457,13 +469,13 @@ class Dashboard extends Component {
                         <h1 className="my-3 tierText text-center">
                           Tier <br />
                           <Image roundedCircle className="tierImage" src={this.state.tierImages[this.state.tymbreRating - 1]}>
-
                           </Image>
                         </h1>
                         <p>
                           {tymbreRating.ratingDescription[this.state.tymbreRating - 1]}
                         </p>
-                      </div>)
+                      </div>
+                    )
                 }
               />
             </Col>
